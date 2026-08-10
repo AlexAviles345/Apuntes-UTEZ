@@ -33,12 +33,16 @@ El **análisis supervisado** se encarga del **mapeo de entradas en salidas** con
 - **Salida**: variable dependiente (y) ya conocida durante el entrenamiento.
 - **Objetivo**: inferir una función que permita **mapear nuevos ejemplos** (datos que no se han visto antes).
 
+![Análisis supervisado](apuntes_images/image1.webp)
+
 ### ¿Cómo funciona el algoritmo?
 
 1. Se le da al algoritmo un conjunto de datos con pares (x → y) conocidos.
 2. El algoritmo analiza esos datos y **produce una función inferida** (el modelo).
 3. Con esa función se pueden hacer predicciones sobre datos nuevos **de manera razonable**.
 4. Siempre existe un **error de generalización**: la función no es perfecta para datos nunca vistos.
+
+![Algoritmos de aprendizaje supervisado y generalización](apuntes_images/image2.webp)
 
 ### División: Entrenamiento y Prueba
 
@@ -73,6 +77,9 @@ Los algoritmos supervisados se dividen en dos grandes tareas:
 | **Regresión** | Variable **continua** (números) | Regresión lineal, polinomial |
 | **Clasificación** | Variable **discreta** (categorías) | K-NN, SVM, Árboles de decisión, Naive Bayes |
 
+![Cuándo usar regresión o clasificación](apuntes_images/image3.webp)
+![Bloques de algoritmos de aprendizaje supervisado](apuntes_images/image4.webp)
+
 - **Regresión** — predice valores numéricos continuos.
 - **K-NN (K Nearest Neighbors)** — clasifica un dato nuevo según sus k vecinos más cercanos. Ejemplo visual: dos grupos (Aprobado / Reprobado) como círculos; KNN decide a cuál pertenece un punto nuevo según quiénes tiene más cerca.
 - **Support Vector Machines (SVM)** — encuentra el hiperplano que mejor separa clases.
@@ -95,6 +102,8 @@ Cuando los datos **no tienen etiquetas**, se usa agrupamiento (clustering):
 
 La **regresión** es un método estadístico para estimar el nivel del efecto de una **variable independiente (x)** sobre una **variable dependiente (y)**.
 
+![Definición de regresión](apuntes_images/image9.webp)
+
 Se usa para comprender o describir la **relación entre un conjunto de variables independientes y dependientes** expresada como una función matemática.
 
 ### Organización según tus apuntes
@@ -113,6 +122,8 @@ Regresión
 ```
 
 Por eso existen combinaciones como: **Lineal Simple**, **Lineal Múltiple**, **Polinomial Simple**, **Polinomial Múltiple**.
+
+![Tipos de regresión según los datos](apuntes_images/image10.webp)
 
 ### Tipos de regresión (por forma de la curva)
 
@@ -137,6 +148,9 @@ Pregunta clave: **¿cómo se incrementa/decrementa y cuando varía x?**
 
 ### Fórmula del modelo
 
+![Regresión lineal](apuntes_images/image12.webp)
+![Fórmula de regresión](apuntes_images/image13.webp)
+
 $$y = b_0 + b_1 x + E$$
 
 - $b_0$ = intercepto (valor de y cuando x = 0)
@@ -144,6 +158,8 @@ $$y = b_0 + b_1 x + E$$
 - $E$ = error (residuo)
 
 ### Cálculo manual de b₀ y b₁
+
+![Fórmulas para b0 y b1 en regresión simple](apuntes_images/image15.webp)
 
 $$b_0 = \frac{\sum y \sum x^2 - \sum x \sum xy}{n \sum x^2 - (\sum x)^2}$$
 
@@ -167,10 +183,13 @@ Luego se calculan las sumatorias: `Σy`, `Σx²`, `Σx`, `Σxy`, `(Σx)²` y se 
 ### Ejemplo visual
 
 Dados los puntos (0, −2), (1, 1), (2, 4):
+![Puntos de ejemplo](apuntes_images/image5.webp)
 
 1. Trazar el scatter plot.
 2. Calcular la pendiente: $m = \frac{x_1 - x_2}{y_1 - y_2}$ *(nota: cuidado con el orden de las diferencias en la fórmula real)*.
+![Cálculo de m y b](apuntes_images/image6.webp)
 3. La función resultante es: $y = 3x - 2$
+![Línea resultante y=3x-2](apuntes_images/image7.webp)
 
 ---
 
@@ -180,11 +199,15 @@ Dados los puntos (0, −2), (1, 1), (2, 4):
 
 Cuando hay **más de una variable independiente** (x₁, x₂, ...) el modelo es:
 
+![Fórmula de regresión lineal múltiple](apuntes_images/image14.webp)
+
 $$y = b_0 + b_1 x_1 + b_2 x_2 + E$$
 
 ### Procedimiento (2 variables independientes)
 
 #### Paso 1 — Calcular los coeficientes de regresión S
+
+![Coeficientes de regresión (S)](apuntes_images/image16.webp)
 
 $$Sx_1^2 = \sum x_1^2 - \frac{(\sum x_1)^2}{n}$$
 
@@ -197,6 +220,8 @@ $$Sx_2 y = \sum x_2 y - \frac{\sum x_2 \cdot \sum y}{n}$$
 $$Sx_1 x_2 = \sum x_1 x_2 - \frac{\sum x_1 \cdot \sum x_2}{n}$$
 
 #### Paso 2 — Calcular b₁ y b₂
+
+![Fórmulas para b0, b1 y b2](apuntes_images/image17.webp)
 
 $$b_1 = \frac{Sx_2^2 \cdot Sx_1 y - Sx_1 x_2 \cdot Sx_2 y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1 x_2)^2}$$
 
@@ -230,11 +255,15 @@ Luego se calculan los coeficientes S con las fórmulas de SUMATORIAS y se obtien
 
 Cuando la relación entre variables **no es lineal** y la nube de puntos describe una curva. Incluir solo variables lineales no es suficiente; es necesario **elevar las variables a potencias** (grados).
 
+![Regresión polinomial concepto](apuntes_images/image18.webp)
+
 ### Fórmula general (grado 2)
 
 $$y = b_0 + b_1 x + b_2 x^2$$
 
 ### Sistema de ecuaciones normales (grado 2)
+
+![Sistema de ecuaciones normales de regresión polinomial](apuntes_images/image19.webp)
 
 Se resuelven simultáneamente estas 3 ecuaciones:
 
@@ -274,7 +303,7 @@ $$y = b_0 + b_1 x_1 + b_2 x_1^2 + b_3 x_2 + b_4 x_2^2 + b_5 x_1 x_2$$
 
 ## 7. Formas de Polinomios en Gráficas (Grados 1 al 5)
 
-*(Esta sección se complementará con las imágenes del documento docx)*
+![Diferentes tipos de regresiones (polinomial, exponencial, logística)](apuntes_images/image11.webp)
 
 Conceptos clave a conocer para cada grado:
 
@@ -285,6 +314,24 @@ Conceptos clave a conocer para cada grado:
 | 3 | Cúbica | $y = b_0 + b_1 x + b_2 x^2 + b_3 x^3$ | Curva con 1 punto de inflexión |
 | 4 | Cuártica | $y = b_0 + \ldots + b_4 x^4$ | Curva con 2 puntos de inflexión (forma W o M) |
 | 5 | Quíntica | $y = b_0 + \ldots + b_5 x^5$ | Curva con 3 puntos de inflexión |
+
+### Gráficas de los polinomios (Grados 1 al 5)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="apuntes_images/graph_poly_1.webp" width="45%" alt="Grado 1">
+  <img src="apuntes_images/graph_poly_2.webp" width="45%" alt="Grado 2">
+  <img src="apuntes_images/graph_poly_3.webp" width="45%" alt="Grado 3">
+  <img src="apuntes_images/graph_poly_4.webp" width="45%" alt="Grado 4">
+  <img src="apuntes_images/graph_poly_5.webp" width="45%" alt="Grado 5">
+</div>
+
+### Otras Gráficas Importantes (Exponencial, Logarítmica, Logística)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="apuntes_images/graph_exponential.webp" width="30%" alt="Exponencial">
+  <img src="apuntes_images/graph_logarithmic.webp" width="30%" alt="Logarítmica">
+  <img src="apuntes_images/graph_logistic.webp" width="30%" alt="Logística">
+</div>
 
 ### Lo que debes saber de cada forma:
 
@@ -481,6 +528,8 @@ Dataset clásico de clasificación supervisada. Contiene 150 flores con 4 caract
 | `Petal.Length` | Variable independiente (x) |
 | `Petal.Width` | Variable independiente (x) |
 | `Species` | Variable dependiente (y) — 3 clases: setosa, versicolor, virginica |
+
+![Ejemplo de división Train/Test en lenguaje R (dataset Iris)](apuntes_images/image22.webp)
 
 ### Normalización / Estandarización
 

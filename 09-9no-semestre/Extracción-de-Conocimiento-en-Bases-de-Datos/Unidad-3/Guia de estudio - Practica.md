@@ -327,6 +327,8 @@ Después del entrenamiento, el modelo almacena los coeficientes de la función a
 
 ### Código completo
 
+![Ejemplo de división Train/Test en R (similar conceptualmente al split en Python)](apuntes_images/image22.webp)
+
 ```python
 # ── Importaciones ──────────────────────────────────────────────────────────────
 import pandas as pd
@@ -379,6 +381,8 @@ print("Reporte de Clasificación:\\n", reporte)
 
 ### Regresión Lineal Simple
 
+![Fórmulas b0, b1 regresión lineal simple](apuntes_images/image15.webp)
+
 $$b_1 = \frac{n\sum xy - \sum x \sum y}{n\sum x^2 - (\sum x)^2} \qquad b_0 = \frac{\sum y \sum x^2 - \sum x \sum xy}{n\sum x^2 - (\sum x)^2}$$
 
 Modelo: $\hat{y} = b_0 + b_1 x$
@@ -387,6 +391,8 @@ Modelo: $\hat{y} = b_0 + b_1 x$
 
 ### Coeficientes S (para Múltiple)
 
+![Fórmulas Coeficientes S](apuntes_images/image16.webp)
+
 $$Sx_i^2 = \sum x_i^2 - \frac{(\sum x_i)^2}{n}$$
 
 $$Sx_iy = \sum x_iy - \frac{\sum x_i \cdot \sum y}{n}$$
@@ -394,6 +400,8 @@ $$Sx_iy = \sum x_iy - \frac{\sum x_i \cdot \sum y}{n}$$
 $$Sx_1x_2 = \sum x_1x_2 - \frac{\sum x_1 \cdot \sum x_2}{n}$$
 
 ### Regresión Lineal Múltiple (2 variables)
+
+![Fórmulas regresión múltiple b0, b1, b2](apuntes_images/image17.webp)
 
 $$b_1 = \frac{Sx_2^2 \cdot Sx_1y - Sx_1x_2 \cdot Sx_2y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1x_2)^2} \qquad b_2 = \frac{Sx_1^2 \cdot Sx_2y - Sx_1x_2 \cdot Sx_1y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1x_2)^2}$$
 
@@ -404,6 +412,8 @@ Modelo: $\hat{y} = b_0 + b_1 x_1 + b_2 x_2$
 ---
 
 ### Ecuaciones Normales Polinomial Grado 2
+
+![Sistema de ecuaciones normales de regresión polinomial](apuntes_images/image19.webp)
 
 $$\begin{cases} nb_0 + \sum x \cdot b_1 + \sum x^2 \cdot b_2 = \sum y \\ \sum x \cdot b_0 + \sum x^2 \cdot b_1 + \sum x^3 \cdot b_2 = \sum xy \\ \sum x^2 \cdot b_0 + \sum x^3 \cdot b_1 + \sum x^4 \cdot b_2 = \sum x^2 y \end{cases}$$
 

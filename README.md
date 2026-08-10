@@ -33,5 +33,10 @@ Apuntes-UTEZ/
 - Cada carpeta de asignatura (ej. `Extraccion-de-Conocimiento-en-Bases-de-Datos`) debe contar con su propio `README.md` donde se detalla el temario, el objetivo de la materia y la forma de evaluación.
 - Los apuntes y documentos se redactan preferentemente en formato Markdown (`.md`) para facilitar su lectura y mantenimiento.
 
+## Archivos Grandes (Git LFS)
+
+Este repositorio está configurado con **Git LFS (Large File Storage)** para el manejo eficiente de archivos multimedia y binarios.
+Actualmente, las imágenes optimizadas en formato `.webp` están siendo rastreadas por LFS de manera global. Si planeas agregar archivos pesados en el futuro o si clonas este repositorio en otro equipo, recuerda asegurarte de tener Git LFS instalado.
+
 ---
 *Repositorio mantenido para fines académicos.*
