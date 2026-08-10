@@ -49,8 +49,9 @@ Para saber qué tan bien generaliza el modelo, los datos se dividen:
 | Entrenamiento | 70 % – 80 % | El algoritmo "aprende" con estos datos |
 | Prueba | 20 % – 30 % | Se evalúa qué tan bien predice el modelo |
 
-> En Python: `train_test_split(X, y, test_size=0.20, random_state=42)`  
-> `random_state` es la **semilla aleatoria** — garantiza que la división sea reproducible.
+> En Python: `train_test_split(X, y, test_size=0.20, random_state=42, stratify=y)`  
+> `random_state` es la **semilla aleatoria** — garantiza que la división sea reproducible.  
+> `stratify=y` — garantiza que se mantenga la proporción original de las clases.
 
 ---
 
@@ -355,6 +356,14 @@ Cuando pruebas varios modelos (ej. grado 1 vs grado 2 vs grado 3):
 | R² | [0, 1] | 0.90 – 0.95 | R² = 1 (sobreajuste) |
 | RMSE | [0, +∞) | Lo más pequeño posible | RMSE = 0 (imposible) |
 
+### Métricas para Clasificación
+
+- **Exactitud (Accuracy):** Porcentaje de aciertos globales.
+- **Matriz de Confusión:** Tabla de predicciones correctas e incorrectas (falsos positivos/negativos).
+  - *Falsos Positivos:* Valores negativos reales clasificados como positivos.
+  - *Falsos Negativos:* Valores positivos reales clasificados como negativos.
+- **Reporte de Clasificación:** Muestra precision, recall y f1-score por clase.
+
 ---
 
 ## 9. Implementación en Python con scikit-learn
@@ -364,8 +373,10 @@ Cuando pruebas varios modelos (ej. grado 1 vs grado 2 vs grado 3):
 ```python
 from sklearn.model_selection import train_test_split   # División entrenamiento/prueba
 from sklearn.linear_model import LinearRegression       # Regresión lineal y polinomial
-from sklearn.metrics import mean_squared_error, r2_score  # Métricas
-from sklearn.preprocessing import PolynomialFeatures    # Transformación polinomial
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler    # Transformaciones
+from sklearn.metrics import mean_squared_error, r2_score  # Métricas regresión
+from sklearn.neighbors import KNeighborsClassifier      # Clasificador K-NN
+from sklearn.metrics import accuracy_score, classification_report, confusion_matrix # Métricas clasificación
 import pandas as pd
 import numpy as np
 ```
@@ -457,7 +468,7 @@ print('Intercepto:', modelo_poly.intercept_)
 
 ---
 
-## 10. Clasificación con K-NN en R (Dataset Iris)
+## 10. Clasificación con K-NN (Dataset Iris)
 
 ### Dataset Iris
 
@@ -482,28 +493,39 @@ $$z = \frac{x - \mu}{\sigma}$$
 - Los valores estandarizados quedan aproximadamente entre **−3 y +3**.
 - Si no se normalizan los datos, variables con valores grandes dominarán la distancia.
 
-### División de datos en R (80/20)
 
-```r
-# indices_train contiene los índices del conjunto de entrenamiento
-datos_train  <- datos[indices_train, 1:4]    # Columnas 1-4: variables independientes
-clase_train  <- datos[indices_train, 5]      # Columna 5: variable dependiente (Species)
 
-datos_test   <- datos[-indices_train, 1:4]   # El signo - excluye esos índices → son el test
-clase_test   <- datos[-indices_train, 5]
+### Flujo Completo: K-NN en Python
+
+```python
+# 1. Cargar y convertir variables categóricas (texto a números)
+df = pd.read_csv('iris.csv')
+df["target"] = df["Species"].astype("category").cat.codes
+
+# 2. Definir variables
+x = df[["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"]]
+y = df["target"]
+
+# 3. Dividir datos (usando stratify para preservar proporción de clases)
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# 4. Escalar los datos (-3 a +3) para evitar dominio de variables
+scaler = StandardScaler()
+x_train_scaled = scaler.fit_transform(x_train)
+x_test_scaled = scaler.transform(x_test)
+
+# 5. Entrenar modelo
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(x_train_scaled, y_train)
+
+# 6. Predecir y Evaluar
+y_pred = knn.predict(x_test_scaled)
+print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
+print("Matriz de Confusión:\\n", confusion_matrix(y_test, y_pred))
+print("Reporte:\\n", classification_report(y_test, y_pred))
 ```
-
-> `datos[-indices_train, ]` en R significa: **todo excepto** las filas en `indices_train`.  
-> En Python equivale a los índices que NO están en `x_train`.
-
-### Comparación Python vs R para dividir datos
-
-| Operación | Python (sklearn) | R |
-|---|---|---|
-| División train/test | `train_test_split(X, y, test_size=0.2)` | `sample()` + indexación positiva/negativa |
-| Variables X | `datos[['col1','col2',...]]` | `datos[indices, 1:4]` |
-| Variable y | `datos['target']` | `datos[indices, 5]` |
-| Excluir índices | `iloc` con máscara booleana | `datos[-indices, ]` |
 
 ---
 
