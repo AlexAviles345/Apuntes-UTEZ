@@ -19,6 +19,9 @@
 
 ## 1. Aprendizaje Supervisado vs No Supervisado
 
+![Análisis supervisado](apuntes_images/image1.webp)
+![Algoritmos de aprendizaje supervisado y generalización](apuntes_images/image2.webp)
+
 ### Aprendizaje Supervisado
 
 Se encarga del **mapeo de entradas en salidas** con base en **datos de entrenamiento etiquetados** (pares entrada–salida ya conocidos).
@@ -43,6 +46,9 @@ Se usa cuando los datos **no tienen etiquetas**. No se predice ni clasifica; se 
 ---
 
 ## 2. Algoritmos de Aprendizaje Supervisado
+
+![Bloques de algoritmos de aprendizaje supervisado](apuntes_images/image4.webp)
+![Cuándo usar regresión o clasificación](apuntes_images/image3.webp)
 
 Los algoritmos supervisados se dividen en dos tareas según el tipo de variable objetivo:
 
@@ -74,9 +80,17 @@ Los algoritmos supervisados se dividen en dos tareas según el tipo de variable 
 
 ## 3. Regresión — Definición y Tipos
 
+![Definición de regresión](apuntes_images/image9.webp)
+![Regresión lineal](apuntes_images/image12.webp)
+![Fórmula de regresión](apuntes_images/image13.webp)
+
 La **regresión** es un método estadístico para estimar el nivel del **efecto de una variable independiente (x)** sobre una **variable dependiente (y)**, expresado como una función matemática.
 
+![Ejemplo de dispersión (Ventas vs publicidad)](apuntes_images/image8.webp)
+
 ### Clasificación de la regresión (según tus apuntes)
+
+![Tipos de regresión según los datos](apuntes_images/image10.webp)
 
 ```
 Regresión
@@ -124,6 +138,8 @@ $$y = b_0 + b_1 x + E$$
 
 ### Fórmulas para calcular b₀ y b₁
 
+![Fórmulas para b0 y b1 en regresión simple](apuntes_images/image15.webp)
+
 $$b_1 = \frac{n \sum xy - \sum x \sum y}{n \sum x^2 - (\sum x)^2}$$
 
 $$b_0 = \frac{\sum y \sum x^2 - \sum x \sum xy}{n \sum x^2 - (\sum x)^2}$$
@@ -139,9 +155,13 @@ $$\sum x \quad \sum y \quad \sum x^2 \quad \sum xy \quad (\sum x)^2$$
 ### Ejemplo conceptual
 
 Dados los puntos (0, −2), (1, 1), (2, 4):
-- Se traza el scatter plot.
+![Puntos de ejemplo](apuntes_images/image5.webp)
+
 - Se calcula la pendiente a partir de los puntos.
+![Cálculo de m y b](apuntes_images/image6.webp)
+
 - La función resultante es: $y = 3x - 2$
+![Línea resultante y=3x-2](apuntes_images/image7.webp)
 
 ---
 
@@ -153,9 +173,13 @@ Extensión de la regresión lineal simple para cuando existen **más de una vari
 
 ### Fórmula del modelo (2 variables)
 
+![Fórmula de regresión lineal múltiple](apuntes_images/image14.webp)
+
 $$y = b_0 + b_1 x_1 + b_2 x_2 + E$$
 
 ### ¿Qué son los coeficientes S?
+
+![Coeficientes de regresión (S)](apuntes_images/image16.webp)
 
 Son valores intermedios que se calculan a partir de las sumatorias de los datos. Representan la **varianza y covarianza ajustadas** de cada variable.
 
@@ -170,6 +194,8 @@ $$Sx_2 y = \sum x_2 y - \frac{\sum x_2 \cdot \sum y}{n}$$
 $$Sx_1 x_2 = \sum x_1 x_2 - \frac{\sum x_1 \cdot \sum x_2}{n}$$
 
 ### Fórmulas para b₁, b₂ y b₀
+
+![Fórmulas para b0, b1 y b2](apuntes_images/image17.webp)
 
 $$b_1 = \frac{Sx_2^2 \cdot Sx_1 y - Sx_1 x_2 \cdot Sx_2 y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1 x_2)^2}$$
 
@@ -189,6 +215,8 @@ $$\sum x_1 \quad \sum x_2 \quad \sum y \quad \sum x_1^2 \quad \sum x_2^2 \quad \
 
 ### ¿Cuándo usarla?
 
+![Regresión polinomial concepto](apuntes_images/image18.webp)
+
 Cuando la relación entre las variables **no es lineal** — la nube de puntos describe una curva, no una recta. Se necesita **elevar las variables a potencias** para capturar esa curvatura.
 
 ### Fórmula del modelo (grado 2, 1 variable)
@@ -196,6 +224,8 @@ Cuando la relación entre las variables **no es lineal** — la nube de puntos d
 $$y = b_0 + b_1 x + b_2 x^2$$
 
 ### Sistema de ecuaciones normales (grado 2)
+
+![Sistema de ecuaciones normales de regresión polinomial](apuntes_images/image19.webp)
 
 Para obtener b₀, b₁ y b₂ se plantea y resuelve este sistema de 3 ecuaciones simultáneas:
 
@@ -219,6 +249,8 @@ Python genera automáticamente todas esas columnas con `PolynomialFeatures`.
 
 ## 7. Formas de Polinomios en Gráficas (Grados 1 al 5)
 
+![Diferentes tipos de regresiones (polinomial, exponencial, logística)](apuntes_images/image11.webp)
+
 | Grado | Nombre | Forma general | Forma de la curva |
 |---|---|---|---|
 | 1 | Lineal | $y = b_0 + b_1 x$ | Línea recta — siempre creciente o decreciente |
@@ -226,6 +258,24 @@ Python genera automáticamente todas esas columnas con `PolynomialFeatures`.
 | 3 | Cúbica | $y = b_0 + b_1 x + b_2 x^2 + b_3 x^3$ | Curva en "S" suave — hasta 2 extremos |
 | 4 | Cuártica | $y = b_0 + \ldots + b_4 x^4$ | Forma W o M — hasta 3 extremos |
 | 5 | Quíntica | $y = b_0 + \ldots + b_5 x^5$ | Curva compleja — hasta 4 extremos |
+
+### Gráficas de los polinomios (Grados 1 al 5)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="apuntes_images/graph_poly_1.webp" width="45%" alt="Grado 1">
+  <img src="apuntes_images/graph_poly_2.webp" width="45%" alt="Grado 2">
+  <img src="apuntes_images/graph_poly_3.webp" width="45%" alt="Grado 3">
+  <img src="apuntes_images/graph_poly_4.webp" width="45%" alt="Grado 4">
+  <img src="apuntes_images/graph_poly_5.webp" width="45%" alt="Grado 5">
+</div>
+
+### Otras Gráficas Importantes (Exponencial, Logarítmica, Logística)
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="apuntes_images/graph_exponential.webp" width="30%" alt="Exponencial">
+  <img src="apuntes_images/graph_logarithmic.webp" width="30%" alt="Logarítmica">
+  <img src="apuntes_images/graph_logistic.webp" width="30%" alt="Logística">
+</div>
 
 ### Reglas importantes
 
@@ -321,6 +371,8 @@ Si una variable tiene rango 0–100 000 y otra tiene rango 0–1, la primera dom
 ---
 
 ## 10. División de Datos: Entrenamiento y Prueba
+
+![Ejemplo de división Train/Test en lenguaje R (dataset Iris)](apuntes_images/image22.webp)
 
 Para evaluar qué tan bien **generaliza** el modelo (predice datos nuevos), los datos originales se dividen en dos conjuntos:
 
