@@ -402,6 +402,8 @@ $$Sx_1x_2 = \sum x_1x_2 - \frac{\sum x_1 \cdot \sum x_2}{n}$$
 ### Regresión Lineal Múltiple (2 variables)
 
 ![Fórmulas regresión múltiple b0, b1, b2](apuntes_images/image17.webp)
+> [!WARNING]
+> **Error tipográfico en la diapositiva**: La imagen muestra el símbolo $\Sigma$ en lugar de $S$. Tal como indica la nota al pie de la imagen, se deben usar los coeficientes $S$ (calculados arriba). Las fórmulas matemáticas escritas a continuación son las correctas.
 
 $$b_1 = \frac{Sx_2^2 \cdot Sx_1y - Sx_1x_2 \cdot Sx_2y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1x_2)^2} \qquad b_2 = \frac{Sx_1^2 \cdot Sx_2y - Sx_1x_2 \cdot Sx_1y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1x_2)^2}$$
 

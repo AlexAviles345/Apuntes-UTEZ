@@ -159,6 +159,8 @@ Dados los puntos (0, −2), (1, 1), (2, 4):
 
 - Se calcula la pendiente a partir de los puntos.
 ![Cálculo de m y b](apuntes_images/image6.webp)
+> [!WARNING]
+> **Error en la diapositiva**: La fórmula de la pendiente en la imagen dice $m = \frac{x_1 - x_2}{y_1 - y_2}$, lo cual es **incorrecto** matemáticamente (está invertida). La fórmula real de la pendiente es $m = \frac{y_2 - y_1}{x_2 - x_1}$. Ten mucho cuidado con esto en el examen.
 
 - La función resultante es: $y = 3x - 2$
 ![Línea resultante y=3x-2](apuntes_images/image7.webp)
@@ -196,6 +198,8 @@ $$Sx_1 x_2 = \sum x_1 x_2 - \frac{\sum x_1 \cdot \sum x_2}{n}$$
 ### Fórmulas para b₁, b₂ y b₀
 
 ![Fórmulas para b0, b1 y b2](apuntes_images/image17.webp)
+> [!WARNING]
+> **Error tipográfico en la diapositiva**: La fórmula principal de la imagen dice $\Sigma x_2^2 \dots$ usando el símbolo de sumatoria ($\Sigma$). Esto es un error. Como indica la nota al pie de la misma diapositiva, se deben usar los coeficientes de regresión **$S$** (varianzas/covarianzas ajustadas) que calculaste en el paso anterior, NO las sumatorias directas. Las fórmulas en texto de abajo son las correctas.
 
 $$b_1 = \frac{Sx_2^2 \cdot Sx_1 y - Sx_1 x_2 \cdot Sx_2 y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1 x_2)^2}$$
 

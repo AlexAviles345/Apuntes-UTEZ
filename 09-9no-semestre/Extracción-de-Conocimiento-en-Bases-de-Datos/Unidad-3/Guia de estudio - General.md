@@ -186,8 +186,10 @@ Dados los puntos (0, −2), (1, 1), (2, 4):
 ![Puntos de ejemplo](apuntes_images/image5.webp)
 
 1. Trazar el scatter plot.
-2. Calcular la pendiente: $m = \frac{x_1 - x_2}{y_1 - y_2}$ *(nota: cuidado con el orden de las diferencias en la fórmula real)*.
+2. Calcular la pendiente: $m = \frac{y_2 - y_1}{x_2 - x_1}$.
 ![Cálculo de m y b](apuntes_images/image6.webp)
+> [!WARNING]
+> **Error en la diapositiva**: La fórmula de la pendiente mostrada en la imagen anterior dice $m = \frac{x_1 - x_2}{y_1 - y_2}$, lo cual es **incorrecto** (está al revés). La fórmula matemática correcta siempre lleva las 'y' en el numerador: $m = \frac{y_2 - y_1}{x_2 - x_1}$.
 3. La función resultante es: $y = 3x - 2$
 ![Línea resultante y=3x-2](apuntes_images/image7.webp)
 
@@ -222,6 +224,8 @@ $$Sx_1 x_2 = \sum x_1 x_2 - \frac{\sum x_1 \cdot \sum x_2}{n}$$
 #### Paso 2 — Calcular b₁ y b₂
 
 ![Fórmulas para b0, b1 y b2](apuntes_images/image17.webp)
+> [!WARNING]
+> **Error tipográfico en la diapositiva**: La fórmula principal de la imagen muestra el símbolo de sumatoria $\Sigma$ (ej. $\Sigma x_2^2$). Como aclara la nota inferior de la imagen, esto es un error: se deben utilizar los coeficientes **$S$** calculados en el Paso 1, no las sumatorias $\Sigma$. Las fórmulas escritas abajo sí son las correctas.
 
 $$b_1 = \frac{Sx_2^2 \cdot Sx_1 y - Sx_1 x_2 \cdot Sx_2 y}{Sx_1^2 \cdot Sx_2^2 - (Sx_1 x_2)^2}$$
 
