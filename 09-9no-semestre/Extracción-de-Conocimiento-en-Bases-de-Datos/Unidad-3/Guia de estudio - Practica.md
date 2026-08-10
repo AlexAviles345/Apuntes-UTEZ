@@ -11,7 +11,7 @@
 3. [Método 3 — Regresión Polinomial Grado 2 en Excel](#3-método-3--regresión-polinomial-grado-2-en-excel)
 4. [Método 4 — Regresión Lineal Múltiple en Python](#4-método-4--regresión-lineal-múltiple-en-python)
 5. [Método 5 — Regresión Polinomial en Python](#5-método-5--regresión-polinomial-en-python)
-6. [Método 6 — División de Datos en R (Dataset Iris)](#6-método-6--división-de-datos-en-r-dataset-iris)
+6. [Método 6 — Clasificación K-NN en Python](#6-método-6--clasificación-k-nn-en-python)
 7. [Referencia Rápida de Fórmulas](#7-referencia-rápida-de-fórmulas)
 
 ---
@@ -282,10 +282,16 @@ modelo_poly = LinearRegression()
 modelo_poly.fit(x_train_poly, y_train)
 
 # ── 8. Predicciones ───────────────────────────────────────────────────────────
-# y = b0 + b1*x1 + b2*x1² + b3*x2 + b4*x2² + b5*x1*x2
+# Predicción sobre los datos de prueba
 predicciones = modelo_poly.predict(x_test_poly)
-print('Predicciones:', predicciones)
-print('Originales:  ', y_test.values)
+
+# Predicción de un dato nuevo multivariable (ej. Month=3, Spend=85)
+# 1. Se crea un DataFrame con los nombres de columnas originales
+nuevo_dato = pd.DataFrame([[3, 85]], columns=['Month', 'Spend'])
+# 2. Se transforma el dato nuevo (usar SOLO transform, nunca fit_transform)
+nuevo_dato_poly = poly.transform(nuevo_dato)
+# 3. Se hace la predicción
+pred_nuevo = modelo_poly.predict(nuevo_dato_poly)
 
 # ── 9. Evaluar ────────────────────────────────────────────────────────────────
 r2   = r2_score(y_test, predicciones)
@@ -315,34 +321,57 @@ Después del entrenamiento, el modelo almacena los coeficientes de la función a
 
 ---
 
-## 6. Método 6 — División de Datos en R (Dataset Iris)
+## 6. Método 6 — Clasificación K-NN en Python
 
-**Ejercicio**: dataset `iris` en R. Separar en entrenamiento y prueba, con datos normalizados.
+**Ejercicio**: dataset `iris.csv` en Python. Clasificar el tipo de flor (Species).
 
-### Código visto en clase
+### Código completo
 
-```r
-# Se asume que 'datos' ya contiene el iris normalizado (escala z-score)
-# y que 'indices_train' ya fue generado con sample()
+```python
+# ── Importaciones ──────────────────────────────────────────────────────────────
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 
-# Variables independientes (columnas 1 a 4: Sepal.Length, Sepal.Width,
-#                                            Petal.Length, Petal.Width)
-datos_train <- datos[indices_train, 1:4]    # Filas del entrenamiento
-clase_train <- datos[indices_train, 5]      # Columna 5: Species (variable dependiente)
+# ── 1. Cargar y preparar datos ────────────────────────────────────────────────
+df = pd.read_csv('iris.csv')
+# Convertir texto (Species) a números para el modelo (0, 1, 2)
+df["target"] = df["Species"].astype("category").cat.codes
 
-# El signo negativo excluye esas filas → lo que queda es el conjunto de prueba
-datos_test  <- datos[-indices_train, 1:4]
-clase_test  <- datos[-indices_train, 5]
+x = df[["SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm"]]
+y = df["target"]
+
+# ── 2. División (con stratify) ────────────────────────────────────────────────
+# stratify=y asegura que ambos conjuntos tengan la misma proporción de clases
+x_train, x_test, y_train, y_test = train_test_split(
+    x, y, test_size=0.2, random_state=42, stratify=y
+)
+
+# ── 3. Escalamiento de características ────────────────────────────────────────
+scaler = StandardScaler()
+# El modelo escala (entre aprox -3 y 3) para que ninguna variable domine
+x_train_scaled = scaler.fit_transform(x_train)
+x_test_scaled = scaler.transform(x_test)
+
+# ── 4. Entrenar modelo K-NN ───────────────────────────────────────────────────
+knn = KNeighborsClassifier(n_neighbors=5)
+knn.fit(x_train_scaled, y_train)
+
+# ── 5. Predicción y Evaluación ────────────────────────────────────────────────
+y_pred = knn.predict(x_test_scaled)
+
+precision = accuracy_score(y_test, y_pred)
+matriz_confusion = confusion_matrix(y_test, y_pred)
+reporte = classification_report(
+    y_test, y_pred, target_names=df["Species"].astype("category").cat.categories
+)
+
+print(f"Precisión Global del Modelo: {precision * 100:.2f}%\\n")
+print("Matriz de Confusión:\\n", matriz_confusion, "\\n")
+print("Reporte de Clasificación:\\n", reporte)
 ```
-
-### Lo que hace cada línea
-
-| Línea | Resultado |
-|---|---|
-| `datos[indices_train, 1:4]` | Filas de entrenamiento, solo columnas de variables x |
-| `datos[indices_train, 5]` | Filas de entrenamiento, solo la columna Species (y) |
-| `datos[-indices_train, 1:4]` | Todo lo que **no** es entrenamiento → prueba, variables x |
-| `datos[-indices_train, 5]` | Todo lo que **no** es entrenamiento → prueba, variable y |
 
 ---
 

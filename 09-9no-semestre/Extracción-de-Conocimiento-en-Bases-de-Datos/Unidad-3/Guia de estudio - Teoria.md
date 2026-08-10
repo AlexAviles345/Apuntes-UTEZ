@@ -236,9 +236,11 @@ Python genera automáticamente todas esas columnas con `PolynomialFeatures`.
 
 ---
 
-## 8. Métricas de Evaluación: RMSE y R²
+## 8. Métricas de Evaluación (Regresión y Clasificación)
 
-Todas las tareas de aprendizaje supervisado (regresión y clasificación) requieren métricas para saber qué tan bien funciona el modelo.
+Todas las tareas de aprendizaje supervisado requieren métricas para saber qué tan bien funciona el modelo.
+
+### Métricas para Regresión
 
 ### R² — Coeficiente de Determinación
 
@@ -279,6 +281,16 @@ $$RMSE \in [0, +\infty)$$
 2. Calcular R² y RMSE de cada uno.
 3. Elegir el modelo con **menor RMSE** y **R² en rango 0.90–0.95**.
 
+### Métricas para Clasificación
+
+Al predecir clases (ej. K-NN), el error no se mide con distancias numéricas, sino contando aciertos y fallos.
+
+- **Exactitud (Accuracy):** Porcentaje total de predicciones correctas sobre el total de datos.
+- **Matriz de Confusión:** Tabla que muestra predicciones correctas y los errores de clasificación.
+  - *Falsos Positivos:* Valores que en realidad eran negativos, pero el modelo clasificó como positivos.
+  - *Falsos Negativos:* Valores que en realidad eran positivos, pero el modelo clasificó como negativos.
+- **Reporte de Clasificación:** Proporciona métricas detalladas por clase (Precisión, Recall, F1-Score).
+
 ---
 
 ## 9. Transformación de Datos: Normalización vs Escalamiento
@@ -292,6 +304,7 @@ $$z = \frac{x - \mu}{\sigma}$$
 - Usa la **desviación estándar** de cada variable.
 - Escala resultante: aproximadamente **−3 a +3**.
 - Se usa en: K-NN, regresión cuando las escalas difieren mucho.
+- **En Python**: Se implementa usando `StandardScaler` de `sklearn.preprocessing`.
 
 ### Escalamiento Min-Max
 
@@ -319,5 +332,6 @@ Para evaluar qué tan bien **generaliza** el modelo (predice datos nuevos), los 
 ### Conceptos clave de la división
 
 - **Semilla aleatoria (random_state)**: parámetro que fija el resultado aleatorio para que la división sea reproducible. Con la misma semilla siempre se obtiene la misma división.
+- **Estratificación (stratify)**: En clasificación, se usa el parámetro `stratify=y` al dividir los datos para asegurar que los conjuntos de entrenamiento y prueba mantengan la misma proporción de clases originales.
 - Se usa **solo `fit` o `fit_transform`** con los datos de entrenamiento. Para los de prueba, solo `transform` — para no contaminar la evaluación con información del conjunto de prueba.
 - El error medido sobre el conjunto de **prueba** es el que indica qué tan bien generalizará el modelo con datos reales futuros.
