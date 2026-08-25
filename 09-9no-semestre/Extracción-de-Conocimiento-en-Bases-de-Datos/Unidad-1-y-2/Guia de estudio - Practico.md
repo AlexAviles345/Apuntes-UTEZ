@@ -17,11 +17,31 @@
 
 ---
 
-### 📂 3. Lectura de Archivos (Pandas)
+### 📂 3. Creación y Lectura de Archivos (Pandas)
 > **Nota:** Primero se tiene que usar e importar la librería: `import pandas as pd`
 
+**Crear un DataFrame desde cero:**
+* **Con listas de registros (por filas):**
+  ```python
+  datos = [
+      ['Alex', 23],
+      ['Daniel', 45]
+  ]
+  df = pd.DataFrame(datos, columns=['nombre', 'edad'])
+  ```
+* **Con un diccionario (por columnas):**
+  ```python
+  datos = {
+      'nombre': ['Alex', 'Daniel'],
+      'edad': [23, 45]
+  }
+  df = pd.DataFrame(datos)
+  ```
+
+**Leer archivos existentes:**
 * **Leer un archivo CSV:** 
   `df = pd.read_csv('archivo.csv')`
+  * *Solucionar errores de codificación:* `encoding='ISO-8859-1'`
 * **Leer un archivo Excel:** 
   `df = pd.read_excel('archivo.xlsx')`
   * *Extraer una hoja específica:* `sheet_name='NombreHoja'`
@@ -29,6 +49,7 @@
   * *Ignorar filas al inicio:* `skiprows=5`
   * *Especificar qué columnas leer:* `usecols='A:D, G'`
   * *Especificar motor y evitar NaN automáticos:* `engine='xlrd', keep_default_na=False`
+  * *Solucionar errores de codificación:* `encoding='ISO-8859-1'`
 
 * **Obtener los nombres de las hojas (si `sheet_name=None`):** `list(datos.keys())`
 
