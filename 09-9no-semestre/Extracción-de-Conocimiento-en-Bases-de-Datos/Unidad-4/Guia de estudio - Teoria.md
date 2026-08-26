@@ -724,7 +724,7 @@ Puede reducir ruido y costo computacional, pero el resultado depende de cuánta 
 
 ### Ejercicio 1 — Segmentación de clientes
 
-Archivo: `Apuntes/Ejercicio-1/puntuacion.csv`.
+Archivo: `Apuntes/Kmeans/Ejercicio-1/puntuacion.csv`.
 
 Características:
 
@@ -757,7 +757,7 @@ Resultados aproximados para elegir $K$:
 
 ### Ejercicio 2 — Agrupamiento de Iris
 
-Archivo: `Apuntes/Ejercicio-2/iris.csv`.
+Archivo: `Apuntes/Kmeans/Ejercicio-2/iris.csv`.
 
 Características utilizadas:
 

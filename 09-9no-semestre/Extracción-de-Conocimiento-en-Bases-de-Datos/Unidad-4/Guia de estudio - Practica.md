@@ -31,12 +31,13 @@ Unidad-4/
 ├── Guia de estudio - Teoria.md
 ├── Guia de estudio - Practica.md
 └── Apuntes/
-    ├── Ejercicio-1/
-    │   ├── Kmeans.ipynb
-    │   └── puntuacion.csv
-    └── Ejercicio-2/
-        ├── Kmeans-iris ejercicio.ipynb
-        └── iris.csv
+    ├── Kmeans/
+    │   ├── Ejercicio-1/
+    │   │   ├── Kmeans.ipynb
+    │   │   └── puntuacion.csv
+    │   └── Ejercicio-2/
+    │       ├── Kmeans-iris ejercicio.ipynb
+    │       └── iris.csv
 ```
 
 Los notebooks originales leen el CSV por su nombre, por lo que cada notebook debe ejecutarse desde la carpeta donde se encuentra su archivo CSV.
@@ -90,8 +91,8 @@ Cargar → explorar → seleccionar características → limpiar
 
 ## 2. Método 1 — K-Means con Clientes
 
-**Notebook:** `Apuntes/Ejercicio-1/Kmeans.ipynb`  
-**Dataset:** `Apuntes/Ejercicio-1/puntuacion.csv`  
+**Notebook:** `Apuntes/Kmeans/Ejercicio-1/Kmeans.ipynb`  
+**Dataset:** `Apuntes/Kmeans/Ejercicio-1/puntuacion.csv`  
 **Objetivo:** agrupar 150 clientes usando ingreso anual y puntuación de gasto.
 
 ### Paso 1 — Importar librerías
@@ -106,7 +107,7 @@ import matplotlib.pyplot as plt
 
 ### Paso 2 — Cargar el dataset
 
-Desde el notebook ubicado en `Ejercicio-1`:
+Desde el notebook ubicado en `Kmeans/Ejercicio-1`:
 
 ```python
 df = pd.read_csv('puntuacion.csv')
@@ -537,8 +538,8 @@ Esto crea un archivo nuevo y conserva el CSV original.
 
 ## 5. Método 4 — K-Means con Iris
 
-**Notebook:** `Apuntes/Ejercicio-2/Kmeans-iris ejercicio.ipynb`  
-**Dataset:** `Apuntes/Ejercicio-2/iris.csv`  
+**Notebook:** `Apuntes/Kmeans/Ejercicio-2/Kmeans-iris ejercicio.ipynb`  
+**Dataset:** `Apuntes/Kmeans/Ejercicio-2/iris.csv`  
 **Objetivo:** buscar agrupaciones a partir de las cuatro mediciones de cada flor.
 
 ### Paso 1 — Cargar y revisar
