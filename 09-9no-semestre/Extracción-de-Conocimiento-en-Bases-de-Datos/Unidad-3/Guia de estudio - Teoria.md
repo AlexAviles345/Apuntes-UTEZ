@@ -340,11 +340,16 @@ $$RMSE \in [0, +\infty)$$
 Al predecir clases (ej. K-NN), el error no se mide con distancias numéricas, sino contando aciertos y fallos.
 
 - **Exactitud (Accuracy):** Porcentaje total de predicciones correctas sobre el total de datos.
-- **Matriz de Confusión:** Tabla que muestra predicciones correctas y los errores de clasificación.
+- **Matriz de Confusión:** Tabla geométrica que expone predicciones correctas y los errores de clasificación. En Scikit-Learn (Python), su lectura es estricta:
+  - **Filas:** Representan las clases **Reales** (Lo que es verdad).
+  - **Columnas:** Representan las clases **Predichas** (Lo que dijo el modelo).
+  - *Aciertos:* Se encuentran siempre en la **diagonal principal** de la matriz. Todo lo que quede fuera de esa diagonal son errores o "confusiones".
   - *Falsos Positivos:* Valores que en realidad eran negativos, pero el modelo clasificó como positivos.
   - *Falsos Negativos:* Valores que en realidad eran positivos, pero el modelo clasificó como negativos.
-- **Reporte de Clasificación:** Proporciona métricas detalladas por clase (Precisión, Recall, F1-Score).
-
+- **Reporte de Clasificación (Score Matrix):** Proporciona métricas detalladas clase por clase para ver dónde sufre más el algoritmo:
+  - **Precision:** ¿De todas las veces que el modelo dijo "es esta clase", cuántas veces tuvo razón? (Mide qué tan "limpio" es al predecir).
+  - **Recall (Sensibilidad):** ¿De todos los elementos que *realmente* pertenecen a esta clase, cuántos logró encontrar el modelo? (Mide qué tanto "no se le escapan").
+  - **F1-Score:** Promedio armónico y equilibrado entre Precision y Recall. Si hay dudas entre cuál de los dos mirar, el F1-Score da la respuesta general.
 ---
 
 ## 9. Transformación de Datos: Normalización vs Escalamiento
