@@ -38,11 +38,43 @@ Errores de dedo, espacios en blanco al inicio o al final de las palabras, o tipo
 
 Antes de aplicar modelos de inteligencia artificial o gráficas complejas, los datos numéricos a veces necesitan cambiar de "forma" o escala:
 
-* **Generalización (Discretización):** Convertir números continuos en categorías. Por ejemplo, tomar un rango continuo de precios numéricos y convertirlos en etiquetas discretas ("barato", "moderado", "caro") estableciendo límites o contenedores (bins).
-* **Escalamiento y Normalización:** Sirve para nivelar columnas numéricas que tienen magnitudes muy distintas, para que ninguna opaque a otra.
-  * **MinMaxScaler (Reescalamiento):** Cambia la escala de los valores considerando el máximo y el mínimo absolutos, de forma que el valor más pequeño siempre será `0` y el más grande será `1`.
-  * **StandardScaler (Normalización):** Cambia la escala basándose en el promedio y la **desviación estándar**. Convierte el promedio a `0` y mide los demás valores como distancias positivas o negativas desde ese centro.
-* **Smoothing (Suavizado):** Se usa para quitar el "ruido" en series de tiempo, aplicando promedios móviles (ej. sacar el promedio de los últimos 10 días constantemente) para ver tendencias más claras.
+### 3.1. Generalización (Discretización)
+Consiste en tomar valores numéricos continuos (infinitos) y agruparlos en "categorías" o contenedores fijos (*bins*). Es útil cuando el rango importa más que el número exacto.
+
+* **Ejemplo Práctico:** En lugar de analizar las edades exactas de los clientes (18, 22, 45, 60), se agrupan en etiquetas categóricas para perfilar mejor.
+
+```mermaid
+graph LR
+    A[Edad: 18] -->|Discretización| B(Joven)
+    C[Edad: 22] -->|Discretización| B(Joven)
+    D[Edad: 45] -->|Discretización| E(Adulto)
+    F[Edad: 68] -->|Discretización| G(Mayor)
+```
+
+### 3.2. Escalamiento y Normalización
+Las matemáticas de los modelos se "confunden" si una columna (ej. Sueldo: $50,000) tiene números gigantescos comparada con otra columna (ej. Edad: 25). Ambas técnicas ajustan los números a una escala similar para que pesen lo mismo, sin perder su proporción original.
+
+* **MinMaxScaler (Reescalamiento):** Comprime o estira todos los datos para que siempre encajen en un rango exacto de **`0` a `1`**. 
+  * *Ejemplo:* Si el rango de sueldos de tus empleados es de $10,000 (mínimo) a $50,000 (máximo). 
+    * El que gana $10,000 se vuelve `0`.
+    * El que gana $50,000 se vuelve `1`.
+    * El que gana la mitad ($30,000) se vuelve `0.5`.
+
+* **StandardScaler (Normalización):** Cambia el promedio (media) de todos los datos a **`0`** y mide qué tan lejos está cada registro de ese "centro" en desviaciones estándar. Aunque matemáticamente no tiene límites fijos, en la práctica el 99% de los datos caerá en un rango aproximado de **`-3` a `+3`**.
+  * *Ejemplo:* Si el promedio del grupo es 25 años. 
+    * Alguien de 25 años se convierte en `0`.
+    * Alguien muy grande (40 años) se vuelve un valor positivo como `+1.8`.
+    * Alguien muy joven (18 años) se vuelve un valor negativo como `-0.9`.
+
+### 3.3. Smoothing (Suavizado)
+
+**Explicación Simple (Intuitiva):**
+Imagina que haces una gráfica de tus gastos diarios: un día gastas $500, al otro $10, luego $300... La gráfica se verá como una montaña rusa llena de picos violentos. A esos brincos caóticos que no te dejan ver el panorama completo se les llama **"ruido"**. El suavizado sirve para "planchar" esa gráfica. En lugar de ver día por día, sacas un **Promedio Móvil** (por ejemplo, sacando el promedio de 7 en 7 días). De esta forma, matas los picos raros de un solo día y obtienes una curva suave que te muestra la **tendencia real**: si en general tus gastos están subiendo o bajando.
+
+**Explicación Técnica:**
+Se utiliza para eliminar el "ruido" (variaciones aleatorias) en datos que cambian a lo largo del tiempo (Series de Tiempo). La técnica estadística más común es el **Promedio Móvil**, que consiste en calcular el promedio de un número fijo de observaciones (por ejemplo, ir sacando el promedio de los últimos 7 días constantemente) en lugar de graficar el dato crudo diario. Al hacer esto continuamente, se revelan tendencias mucho más claras.
+
+![Gráfica de Suavizado](recursos/smoothing.webp)
 
 ---
 
