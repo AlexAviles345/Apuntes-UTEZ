@@ -580,6 +580,27 @@ print("Matriz de Confusión:\\n", confusion_matrix(y_test, y_pred))
 print("Reporte:\\n", classification_report(y_test, y_pred))
 ```
 
+### 🧠 ¿Cómo interpretar los resultados de Evaluación?
+
+#### 1. Matriz de Confusión
+Es una tabla que contrasta lo que el modelo predijo vs lo que realmente era. En Python (Scikit-Learn), siempre se lee así: **las FILAS son los valores REALES** y **las COLUMNAS son las PREDICCIONES**. 
+Lo fundamental es **la diagonal principal** (de arriba a la izquierda hacia abajo a la derecha): esos son los **aciertos**. Todo número que esté *fuera* de esa diagonal, es un **error** (confusión).
+
+*Ejemplo (Si tuviéramos 3 clases: 0, 1 y 2):*
+```text
+          Pred: 0   Pred: 1   Pred: 2
+Real 0: [[   10        0         0    ]   <-- 10 aciertos de la clase 0.
+Real 1:  [    0        9         1    ]   <-- 9 aciertos de la clase 1, pero predijo "2" en una flor que era "1".
+Real 2:  [    0        2        11    ]]  <-- 11 aciertos de la clase 2, pero predijo "1" en dos flores que eran "2".
+```
+
+#### 2. Reporte de Clasificación (Matriz de Score)
+* **Precision (Precisión):** De todas las veces que el modelo dijo "es de esta clase", ¿cuántas veces tuvo razón? (Útil cuando un falso positivo es peligroso).
+* **Recall (Sensibilidad):** De todos los datos que *realmente* eran de esta clase, ¿cuántos logró encontrar el modelo? (Útil cuando no quieres que se te escape ninguno, ej. enfermedades).
+* **F1-Score:** Es el promedio perfecto y equilibrado entre Precision y Recall. Si una clase está desbalanceada, este es el número que debes mirar para saber si el modelo es bueno.
+* **Support:** Simplemente es la cantidad de datos reales que había de esa clase para hacer la prueba.
+* **Accuracy (Exactitud):** El porcentaje general de aciertos sumando todo.
+
 ---
 
 ## 12. Flujo Completo de un Proyecto de Regresión
