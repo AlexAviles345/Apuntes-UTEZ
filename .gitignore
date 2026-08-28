@@ -19,3 +19,8 @@ conda/
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
+# Proyectos y Caché de Anaconda / IDEs
+anaconda_projects/
+.anaconda_project/
+.spyproject/

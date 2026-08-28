@@ -155,3 +155,19 @@ tipocalificacion = df_consolidado.columns.tolist()[10:12]
 # Resultado imaginario: 
 # tipocalificacion = ['Calificacion_Matematicas', 'Calificacion_Historia']
 ```
+
+### 12. La memoria del Cursor (`.fetchone()` vs `.fetchall()`)
+Cuando ejecutas una consulta `SELECT` en MySQL usando Python (`cursor.execute(...)`), los resultados de la base de datos no se guardan automáticamente en tu variable. Se quedan "atorados" flotando en la memoria del cursor. Tienes que "pescarlos" (fetch):
+* **`.fetchone()`**: Pesca **únicamente el primer registro** que encontró la base de datos y suelta el resto. Es súper rápido y eficiente cuando solo necesitas saber una cosa muy puntual (Ej. *"¿Ya existe este cliente sí o no?"* o *"Dame el ID que se acaba de crear"*).
+* **`.fetchall()`**: Pesca **todos los registros de golpe** y los descarga a tu RAM como una enorme lista de Python para que puedas hacer un bucle `for` sobre ellos. 
+  * **Dato vital:** Extraer los datos "limpia" la memoria del cursor. Si alguna vez ejecutas un `SELECT` pero se te olvida poner el `fetchone/fetchall`, MySQL te bloqueará el programa lanzando un error de *Unread results* (Resultados sin leer) cuando intentes hacer tu siguiente consulta.
+
+```python
+cursor.execute('SELECT nombre FROM Alumnos WHERE calificacion = 10')
+
+# Si usamos fetchone() solo obtenemos al primer alumno que la base de datos escupa
+primer_alumno = cursor.fetchone() 
+
+# Si usamos fetchall() nos descarga la lista completa de todos los aplicados
+todos_los_alumnos = cursor.fetchall()
+```
