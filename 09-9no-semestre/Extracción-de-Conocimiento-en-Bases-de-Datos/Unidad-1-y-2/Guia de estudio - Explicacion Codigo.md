@@ -138,3 +138,20 @@ for numero, hoja in enumerate(hojas, 1):
 # La hoja número 2 se llama Febrero
 # La hoja número 3 se llama Marzo
 ```
+
+### 11. ¿Qué hace `df.columns.tolist()[10:12]`?
+Esta línea es una técnica muy útil que combina Pandas con los "recortes" (Slicing) de listas nativas de Python. Se divide en tres pasos lógicos:
+1. **`df.columns`**: Extrae el objeto interno de Pandas que guarda los nombres de todas las columnas (este objeto es un "Índice", es rígido y difícil de manipular directamente).
+2. **`.tolist()`**: Convierte ese objeto rígido en una simple lista de texto tradicional de Python (ej. `['id', 'nombre', 'edad', ...]`).
+3. **`[10:12]` (Slicing / Rebanado)**: Esto es puro Python. Le indica a la computadora: *"Rebana esta lista y quédate únicamente con los elementos desde la posición 10 hasta la 12 (sin incluir la 12)"*. 
+En programación el conteo empieza en 0, por lo que te estás robando exclusivamente los nombres de la **11ª y 12ª columna**.
+
+```python
+# Digamos que tienes un DataFrame inmenso con 15 columnas.
+# En este caso, solo te interesa saber cómo se llaman las columnas 11 y 12.
+
+tipocalificacion = df_consolidado.columns.tolist()[10:12]
+
+# Resultado imaginario: 
+# tipocalificacion = ['Calificacion_Matematicas', 'Calificacion_Historia']
+```
