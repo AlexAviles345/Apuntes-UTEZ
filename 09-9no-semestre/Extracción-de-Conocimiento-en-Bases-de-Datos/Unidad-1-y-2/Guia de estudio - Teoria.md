@@ -37,7 +37,13 @@ Son los datos faltantes en el sistema. En Pandas te puedes encontrar 4 tipos pri
 Registros que se repiten idénticamente. Se identifican analizando fila por fila o por un subconjunto de columnas y, por lo general, se eliminan directamente del conjunto de datos original (`drop_duplicates`).
 
 ### C. Valores Atípicos (Outliers)
-Son números que se escapan drásticamente de la normalidad (ej. una casa que cuesta 100 veces más que el resto). Para identificarlos estadísticamente se usan los **Cuartiles (Q1 y Q3)** y el rango intercuartílico, con los que se calculan un **Límite Inferior (low_limit)** y un **Límite Superior (high_limit)**. Cualquier valor fuera de esa caja se considera atípico y suele ser filtrado para no sesgar el análisis.
+Son números que se escapan drásticamente de la normalidad (ej. una casa que cuesta 100 veces más que el resto). Para identificarlos estadísticamente se usan los **Cuartiles (Q1 y Q3)** y el rango intercuartílico (IQR), con los que se calculan un **Límite Inferior (low_limit)** y un **Límite Superior (high_limit)**. Cualquier valor fuera de esa caja se considera atípico y suele ser filtrado para no sesgar el análisis.
+
+> **¿Por qué usar Cuartiles y no el Promedio?** 
+> Si usáramos el promedio general y de repente llega un dato gigantesco (como el sueldo de Elon Musk), el promedio se distorsiona por completo. Los cuartiles, en cambio, simplemente ordenan los datos de menor a mayor y parten la lista en rebanadas del 25%, por lo que son totalmente "inmunes" a que exista un número asquerosamente grande.
+>
+> **¿De dónde sale el famoso `1.5` de la fórmula?**
+> La fórmula calcula esa "caja de normalidad" (Límite Inferior y Superior) multiplicando el IQR por `1.5`. Ese 1.5 no es inventado; es una convención matemática clásica (creada por el estadístico John Tukey) diseñada para abarcar matemáticamente cerca del ~99.3% de los datos normales. Cualquier valor fuera de esa enorme barrera se considera un verdadero atípico.
 
 ### D. Datos Erróneos o Conflictivos
 Errores de dedo, espacios en blanco al inicio o al final de las palabras, o tipos de datos incorrectos. Se solucionan aplicando reemplazos, expresiones regulares o transformaciones de strings (como quitar espacios o cambiar formatos).
