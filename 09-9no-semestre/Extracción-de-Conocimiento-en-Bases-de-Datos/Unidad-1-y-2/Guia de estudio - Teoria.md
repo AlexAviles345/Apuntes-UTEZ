@@ -16,8 +16,18 @@ Es el proceso central en la integración de datos, utilizado para mover datos de
 ## 2. Data Cleaning (Limpieza de Datos)
 Es el proceso de detectar, corregir o eliminar registros inexactos o corruptos de un conjunto de datos. En las libretas se dividen en 4 problemas principales:
 
-### A. Valores Vacíos (Nulos / NaN)
-Son los datos faltantes en el sistema. ¿Qué hacer con ellos?
+### A. Valores Vacíos (Nulos)
+Son los datos faltantes en el sistema. En Pandas te puedes encontrar 4 tipos principales:
+* **`NaN` (Not a Number):** El más común, heredado de NumPy. Se usa en columnas numéricas. (Cuidado: si a una columna de enteros se le cuela un NaN, Pandas la convertirá a decimales flotantes).
+* **`None`:** El vacío nativo de Python puro. Suele aparecer en columnas de texto o tipo Object.
+* **`NaT` (Not a Time):** El equivalente al NaN pero exclusivo para columnas de Fechas y Horas.
+* **`<NA>` / `pd.NA`:** El "vacío universal" moderno de Pandas (versiones 1.0+). Su gran ventaja es que no fuerza a los enteros a convertirse en decimales.
+
+> **💡 Ojo con la palabra "NA":** 
+> * **Si lo escribes en código:** Poner `['NA']` a mano en un diccionario de Python se interpreta como **texto puro**. Para Pandas es tan normal como la palabra "Hola".
+> * **Si lo lees de un `.csv`:** Al usar `read_csv()`, Pandas tiene un detector inteligente. Si ve las letras "NA", "N/A" o "null" en el archivo, las convierte automáticamente a verdaderos vacíos (`NaN`). Si quieres evitar esto y obligarlo a que lo deje como texto normal, debes leer el archivo usando el parámetro `keep_default_na=False`.
+
+¿Qué hacer con ellos (Data Cleaning)?
 * **Eliminación:** Borrar los registros que tengan datos faltantes (ej. si toda la fila está vacía).
 * **Imputación (Relleno):** En lugar de borrar, se sustituyen los valores nulos por un valor estimado para no perder la fila entera. Los métodos estadísticos más comunes son:
   * **Media (Promedio) / Mediana / Moda:** Rellenar con los valores centrales de esa columna.
