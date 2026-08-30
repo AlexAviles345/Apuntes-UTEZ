@@ -233,7 +233,14 @@ limite_superior = Q3 + 1.5 * (Q3 - Q1)
   import mysql.connector
   from mysql.connector import Error
   
-  config_db = {'host': 'localhost', 'user':'root', 'password':'...', 'database':'db'}
+  config_db = {
+      'host': 'localhost', 
+      'user': 'root', 
+      'password': '...', 
+      'database': 'db',
+      'charset': 'utf8mb4',
+      'use_unicode': True
+  }
   try:
       connection = mysql.connector.connect(**config_db)
       if connection.is_connected():
@@ -242,8 +249,11 @@ limite_superior = Q3 + 1.5 * (Q3 - Q1)
       print(f"Error al conectar: {e}")
   ```
 * **Insertar un documento/registro (Insert):**
+  > **Nota:** Se debe escribir un marcador `%s` por cada columna/parámetro que se vaya a insertar, independientemente del tipo de dato.
   ```python
   cursor = connection.cursor()
+  # Ejemplo con un parámetro: VALUES(%s)
+  # Ejemplo con varios parámetros: VALUES(%s, %s, %s)
   cursor.execute('INSERT IGNORE INTO Tabla(campo) VALUES(%s)', ('valor',))
   connection.commit()
   ```
