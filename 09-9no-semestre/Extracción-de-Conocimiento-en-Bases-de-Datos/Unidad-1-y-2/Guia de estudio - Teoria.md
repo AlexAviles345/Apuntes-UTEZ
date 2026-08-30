@@ -4,6 +4,22 @@ Esta guía recopila y explica los conceptos teóricos fundamentales presentes en
 
 ---
 
+## 0. Tipos de Variables (Concepto Fundamental)
+Antes de limpiar o analizar datos, es vital saber clasificar qué tipo de información tiene cada columna para saber qué operaciones matemáticas (como promedios o modas) tienen sentido.
+
+### A. Variables Numéricas (Cuantitativas)
+Representan cantidades medibles. Tiene sentido matemático **sumarlas o sacarles un promedio**. *(Al rellenar nulos, se suele usar la **Mediana** o el **Promedio**).*
+* **Continuas:** Tienen decimales (ej. Precio, Peso, Salario, Ventas Globales).
+* **Discretas:** Números enteros contables sin decimales (ej. Cantidad de hijos, Unidades vendidas).
+
+### B. Variables Categóricas (Cualitativas)
+Representan características, etiquetas o grupos. **NO tiene sentido lógico sumarlas ni promediarlas**. *(Al rellenar nulos, se usa la **Moda**).*
+* **Nominales (Sin orden lógico):** Género, Plataforma, Color, Empresa (Publisher). ¡Ojo! Los **Códigos Postales** y **Teléfonos** son nominales (sumar dos códigos postales no da uno nuevo).
+* **Ordinales (Con un orden lógico):** Tallas (S, M, L), Décadas (1980s, 1990s), Nivel de Educación.
+* **Mención honorífica (Años):** Aunque un año (ej. 2010) es un número, en Data Science casi siempre se trata como **Categórica Ordinal** porque funciona como una etiqueta de tiempo.
+
+---
+
 ## 1. ETL (Extract, Transform, Load)
 Es el proceso central en la integración de datos, utilizado para mover datos desde múltiples fuentes hacia un sistema centralizado (como una base de datos o un data warehouse) preparándolos para su análisis.
 

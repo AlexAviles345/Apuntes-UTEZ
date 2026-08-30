@@ -174,6 +174,9 @@ limite_superior = Q3 + 1.5 * (Q3 - Q1)
 **Generalización (Crear nuevas columnas por condiciones):**
 * **Condicional Simple (np.where):**
   `df['costo'] = np.where(df['precio'] >= 600, 'caro', 'barato')`
+* **Condicional Manual Específica (.loc):**
+  Aplica un valor específico a las filas que cumplan una condición. Si la columna no existe, se crea.
+  `df.loc[df['precio'] >= 600, 'costo'] = 'caro'`
 * **Por Rangos Definidos (pd.cut):**
   ```python
   limites = [0, 200, 600, float('inf')]
