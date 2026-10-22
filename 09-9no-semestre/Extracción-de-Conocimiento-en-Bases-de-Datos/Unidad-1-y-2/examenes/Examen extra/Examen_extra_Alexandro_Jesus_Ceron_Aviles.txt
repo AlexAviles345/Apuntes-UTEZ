@@ -1,0 +1,67 @@
+### ALEXANDRO JESUS CERON AVILES  9D IDGS
+### EXAMEN DE UNIDAD 2
+
+import pandas as pd
+import numpy as np
+
+# 1.- Crear dataframe
+registros = [[101, 'Electrónica', 1500.0, 10, 120],
+             [102, 'Ropa', pd.NA, 15, 85],
+             [103, 'Hogar', 350.0, 0, 200],
+             [104, 'Electrónica', 2100.0, 20, 150],
+             [105, 'Ropa', 450.0, 5, 90],
+             [106, 'Hogar', pd.NA, 10, 180],
+             [107, 'Electrónica', 1800.0, 15, 135],
+             [108, 'Ropa', 500.0, 0, 95],
+             ]
+df = pd.DataFrame(registros, columns=['id_producto', 'categoria', 'precio', 'descuento', 'unidades_vendidas'])
+df
+
+df.info()
+
+# 2. Crear df_filtrado
+condicion_categoria = (df['categoria'].isin(['Electrónica']))
+condicion_descuento = (df['descuento'].astype(float) >= 10.0)
+df_filtrado = df[condicion_categoria & condicion_descuento]
+df_filtrado
+
+# 3.- Remplazar valores nulos
+
+df_Electrónica = df[df['categoria'] == 'Electrónica']
+moda_Electrónica = df['precio'].median()
+
+df_Ropa = df[df['categoria'] == 'Ropa']
+moda_Ropa = df['precio'].median()
+
+df_Hogar = df[df['categoria'] == 'Hogar']
+moda_Hogar = df['precio'].median()
+
+"""
+# Rellenado
+for i, registro in df.iterrows():
+  if registro['categoria'] == 'Electrónica' and registro['precio'].isna():
+    df.iloc[i, ['precio'].astype(float)] = moda_Electrónica
+
+  if registro['categoria'] == 'Ropa' and registro['precio'].isnull():
+    df.iloc[i, ['precio']] = moda_Ropa
+
+  if registro['categoria'] == 'Hogar' and registro['precio'].isnull():
+    df.iloc[i, ['precio']] = moda_Hogar
+
+df
+"""
+"""
+df['precio'] = np.where(df['categoria'] == 'Electrónica' and df['precio'] == pd.NA, moda_Electrónica)
+df['precio'] = np.where(df['categoria'] == 'Ropa' and df['precio'].empty(), moda_Ropa)
+df['precio'] = np.where(df['categoria'] == 'Electrónica' and df['precio'].empty(), moda_Hogar)
+"""
+
+df.loc[df['id_producto'] == 102, ['precio']] = moda_Ropa
+df.loc[df['id_producto'] == 106, ['precio']] = moda_Hogar
+df
+
+# 4.- Crear nueva columna
+df['precio_final'] = df['precio'] * ( 1 - (df['descuento'] / 100))
+df
+
+
