@@ -7,14 +7,16 @@ La misma aplicación de registro de consumo de agua con tres variantes de gesti�
 | [`ecotrack_estado/`](ecotrack_estado/) | Aplicación Flutter completa, sus pruebas y su configuración |
 | Archivos Markdown de esta carpeta | Guías de cada variante, pruebas y comparación, enlazadas abajo |
 
-## Guías de Estudio
+## Orden de Lectura
 
-- [Comparativa general: diferencias, ventajas y desventajas](Ecotrack_estado%20-%20Comparativa%20de%20gesti%C3%B3n%20de%20estado.md).
-- [ChangeNotifier y patrón Observer](Ecotrack_estado%20-%20ChangeNotifier%20y%20Observer.md).
-- [Provider e inyección de dependencias](Ecotrack_estado%20-%20Provider%20e%20inyecci%C3%B3n%20de%20dependencias.md).
-- [Riverpod y Notifier](Ecotrack_estado%20-%20Riverpod%20y%20Notifier.md).
-- [Pruebas de las tres variantes](Ecotrack_estado%20-%20Pruebas%20de%20las%20tres%20variantes.md).
-- [Apuntes de referencia sobre estado](Ecotrack_estado%20-%20Apuntes%20de%20referencia.md).
+1. [Comparativa general: diferencias, ventajas y desventajas](01%20-%20Ecotrack_estado%20-%20Comparativa%20de%20gesti%C3%B3n%20de%20estado.md).
+2. [ChangeNotifier y patrón Observer](02%20-%20Ecotrack_estado%20-%20ChangeNotifier%20y%20Observer.md).
+3. [Provider e inyección de dependencias](03%20-%20Ecotrack_estado%20-%20Provider%20e%20inyecci%C3%B3n%20de%20dependencias.md).
+4. [Riverpod y Notifier](04%20-%20Ecotrack_estado%20-%20Riverpod%20y%20Notifier.md).
+5. [Apuntes de referencia sobre estado](05%20-%20Ecotrack_estado%20-%20Apuntes%20de%20referencia.md).
+6. [Pruebas de las tres variantes](06%20-%20Ecotrack_estado%20-%20Pruebas%20de%20las%20tres%20variantes.md).
+
+La numeración de los archivos sigue este orden: visión general, variantes, referencia complementaria y pruebas al final.
 
 ## Ejecutar la Aplicación y las Pruebas
 
