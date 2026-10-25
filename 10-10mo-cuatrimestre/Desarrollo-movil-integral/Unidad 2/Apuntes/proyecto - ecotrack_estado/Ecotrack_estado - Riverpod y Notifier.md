@@ -320,7 +320,7 @@ El override no agrega registros por sí solo. El caso todavía debe simular el b
 
 ## Ejecución y Preguntas de Repaso
 
-Desde `ecotrack_estado`:
+Desde `proyecto - ecotrack_estado/ecotrack_estado`:
 
 ```bash
 flutter pub get
@@ -338,3 +338,7 @@ flutter run -t lib/main_riverpod.dart
 9. ¿Cómo cambia ese repositorio durante una prueba sin modificar las pantallas?
 
 Consulte la [guía de pruebas](Ecotrack_estado%20-%20Pruebas%20de%20las%20tres%20variantes.md) para seguir el override y la comparación de criterios paso a paso.
+
+[Comparativa general de las variantes](Ecotrack_estado%20-%20Comparativa%20de%20gesti%C3%B3n%20de%20estado.md).
+
+[Volver al índice de Ecotrack_estado](README.md).

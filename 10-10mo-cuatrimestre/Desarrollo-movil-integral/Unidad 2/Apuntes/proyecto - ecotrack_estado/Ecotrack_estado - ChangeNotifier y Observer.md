@@ -283,7 +283,7 @@ Esta construcción supone que el repositorio recibido permanece estable durante 
 
 ## Ejecución y Límites de la Implementación
 
-Desde `ecotrack_estado`, esta variante es la entrada predeterminada:
+Desde `proyecto - ecotrack_estado/ecotrack_estado`, esta variante es la entrada predeterminada:
 
 ```bash
 flutter pub get
@@ -312,3 +312,7 @@ Estas características no impiden estudiar Observer; delimitan lo que implementa
 9. ¿Por qué esta implementación permite sustituir el repositorio en una prueba?
 
 Continúe con [Provider e inyección de dependencias](Ecotrack_estado%20-%20Provider%20e%20inyecci%C3%B3n%20de%20dependencias.md) para estudiar cómo se distribuye el mismo ViewModel mediante el árbol de widgets.
+
+[Comparativa general de las variantes](Ecotrack_estado%20-%20Comparativa%20de%20gesti%C3%B3n%20de%20estado.md).
+
+[Volver al índice de Ecotrack_estado](README.md).
