@@ -69,7 +69,7 @@ Postman / navegador
           Red bridge compartida: test-net
 ```
 
-![Diagrama original de la comunicación entre backends](imagenes/arquitectura-backends.webp)
+![Diagrama original de la comunicación entre backends](arquitectura-backends.webp)
 
 > **Nota:** la red bridge usada en la práctica se llama `test-net`, tal como aparece en el diagrama.
 
@@ -119,6 +119,7 @@ conexion-de-backends-por-nombre-de-servicio-alias/
 │   ├── backend/
 │   └── backend2/
 ├── imagenes/
+├── arquitectura-backends.webp
 ├── Comandos ocupados.odt
 ├── Comandos ocupados.pdf
 └── Guia de despliegue - Backends conectados.md
