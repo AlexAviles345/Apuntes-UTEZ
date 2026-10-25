@@ -315,7 +315,7 @@ El archivo no usa `setUp` o `tearDown` propios. La preparación está dentro de 
 Desde la raíz del repositorio, en PowerShell:
 
 ```powershell
-cd ".\10-10mo-cuatrimestre\Desarrollo-movil-integral\Unidad 2\Apuntes\ecotrack_estado"
+cd ".\10-10mo-cuatrimestre\Desarrollo-movil-integral\Unidad 2\Apuntes\proyecto - ecotrack_estado\ecotrack_estado"
 flutter pub get
 flutter test
 ```
@@ -408,3 +408,7 @@ Como el archivo agrupa tres variantes, un nuevo escenario colocado dentro del mi
 8. ¿Qué demuestra el caso Capas y qué no puede demostrar sobre los imports?
 9. ¿Qué permite que cada ejecución comience sin registros anteriores?
 10. ¿Por qué estas pruebas no necesitan `integration_test` aunque recorran varios componentes?
+
+[Comparativa general de las variantes](Ecotrack_estado%20-%20Comparativa%20de%20gesti%C3%B3n%20de%20estado.md).
+
+[Volver al índice de Ecotrack_estado](README.md).

@@ -2,7 +2,7 @@
 
 Esta guía estudia la aplicación de [`dependencies/`](dependencies/): un formulario para registrar consumo de agua y energía, una pantalla de confirmación y un historial. Su objetivo es entender las responsabilidades de cada componente, cómo recibe sus dependencias y qué ocurre desde que el usuario captura un dato hasta que se muestra el registro guardado.
 
-La carpeta se llama `dependencies`, el nombre del paquete Dart es **`dpendencies`** y la clase principal es **`EcoTrackApp`**. Los imports `package:dpendencies/...` utilizan el nombre de [`pubspec.yaml`](dependencies/pubspec.yaml), no el nombre de la carpeta.
+La carpeta contenedora se llama `proyecto - dependencies`, el código está en `dependencies/`, el nombre del paquete Dart es **`dpendencies`** y la clase principal es **`EcoTrackApp`**. Los imports `package:dpendencies/...` utilizan el nombre de [`pubspec.yaml`](dependencies/pubspec.yaml), no el nombre de la carpeta.
 
 **Continuación:** [Dependencies - Pruebas y dependencias de EcoTrack](Dependencies%20-%20Pruebas%20y%20dependencias%20de%20EcoTrack.md).
 
@@ -469,3 +469,5 @@ Estas observaciones permiten distinguir la arquitectura implementada de las mejo
 14. ¿Por qué `validarKwh(600)` no aplica actualmente el tope declarado de 500?
 
 Para comprobar su comprensión, explique sin mirar el código este recorrido: **capturar → convertir → validar → construir el objeto → revisar → guardar → consultar → mostrar**.
+
+[Volver al índice de Dependencies](README.md).

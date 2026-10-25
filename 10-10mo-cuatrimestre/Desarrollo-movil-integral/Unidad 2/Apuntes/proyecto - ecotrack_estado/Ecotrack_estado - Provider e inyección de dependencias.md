@@ -279,7 +279,7 @@ La ventaja que se estudia es evitar pasar el ViewModel por cada constructor inte
 
 ## Ejecución y Preguntas de Repaso
 
-Desde la carpeta `ecotrack_estado`:
+Desde la carpeta `proyecto - ecotrack_estado/ecotrack_estado`:
 
 ```bash
 flutter pub get
@@ -299,3 +299,7 @@ Si se ejecuta simplemente `flutter run`, se utiliza la variante manual de `main.
 9. ¿Qué componente decide que cero litros es un error?
 
 Continúe con [Riverpod y Notifier](Ecotrack_estado%20-%20Riverpod%20y%20Notifier.md) para estudiar cómo se separan el gestor y el objeto de estado.
+
+[Comparativa general de las variantes](Ecotrack_estado%20-%20Comparativa%20de%20gesti%C3%B3n%20de%20estado.md).
+
+[Volver al índice de Ecotrack_estado](README.md).

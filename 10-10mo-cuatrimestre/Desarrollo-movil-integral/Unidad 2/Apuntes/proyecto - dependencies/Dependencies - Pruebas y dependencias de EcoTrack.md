@@ -423,7 +423,7 @@ import 'package:dpendencies/dominio/consumo.dart';
 Desde la raíz del repositorio, en PowerShell:
 
 ```powershell
-cd ".\10-10mo-cuatrimestre\Desarrollo-movil-integral\Unidad 2\Apuntes\dependencies"
+cd ".\10-10mo-cuatrimestre\Desarrollo-movil-integral\Unidad 2\Apuntes\proyecto - dependencies\dependencies"
 flutter --version
 flutter pub get
 ```
@@ -567,3 +567,5 @@ El import unitario utiliza el paquete correcto, `dpendencies`. La prueba de litr
 13. ¿Qué diferencia hay entre un repositorio en memoria y un mock?
 14. ¿La prueba de integración demuestra persistencia después de reiniciar la aplicación?
 15. ¿Qué se debe revisar antes de cambiar una assertion que falla?
+
+[Volver al índice de Dependencies](README.md).
