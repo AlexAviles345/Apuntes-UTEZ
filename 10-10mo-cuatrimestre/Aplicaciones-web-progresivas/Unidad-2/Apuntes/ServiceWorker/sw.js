@@ -1,6 +1,6 @@
 const CACHE_NAME = 'v1_cache_10A';
 
-//Self contexto del hilo primario
+// self representa el contexto global del Service Worker (ServiceWorkerGlobalScope)
 self.addEventListener('install', (event)=>{
     console.log('Service Worker instalado');
     
