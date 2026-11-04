@@ -1,0 +1,243 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+.header {
+    background: #f28c28;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.header h1 {
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+}
+
+#mensaje {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.personajes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.personaje {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.personaje img {
+    width: 100%;
+    height: 180px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+.personaje h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.raza {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.ki {
+    color: #e67e22;
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.boton-ver {
+    background: #f28c28;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 11px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.boton-ver:hover {
+    background: #d97706;
+}
+
+button:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 3px;
+}
+
+/* Paginación */
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.paginacion button {
+    background: #f28c28;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.paginacion button:hover {
+    background: #d97706;
+}
+
+.paginacion button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+#pagina {
+    font-weight: bold;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background: #e5e7eb;
+    color: #555;
+}
+
+/* Modal */
+.modal[hidden] {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-contenido {
+    background: white;
+    width: 100%;
+    max-width: 550px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 25px;
+    border-radius: 12px;
+    position: relative;
+}
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    border: none;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+    color: #555;
+}
+
+#modal-mensaje {
+    margin: 15px 0;
+    color: #555;
+}
+
+.detalle {
+    padding-top: 15px;
+}
+
+.detalle img {
+    display: block;
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    margin: 10px 0 20px;
+}
+
+.detalle h2 {
+    font-size: 23px;
+    margin-bottom: 15px;
+    padding-right: 15px;
+}
+
+.detalle p {
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+/* Diseño para celulares */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .personajes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .personaje {
+        padding: 12px;
+    }
+
+    .personaje img {
+        height: 120px;
+    }
+
+    .personaje h3 {
+        font-size: 14px;
+    }
+
+    .paginacion {
+        gap: 10px;
+    }
+
+    .paginacion button {
+        padding: 10px;
+    }
+
+    .modal-contenido {
+        padding: 20px;
+    }
+}
