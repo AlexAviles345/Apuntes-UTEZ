@@ -114,7 +114,7 @@ Si `test-net` no existe, se creará durante el procedimiento.
 Los dos proyectos fuente están agrupados en la carpeta [`backends/`](backends/), separados de las imágenes y de los documentos de apoyo:
 
 ```text
-conexion-de-backends-por-nombre-de-servicio-alias/
+1. conexion-de-backends-por-nombre-de-servicio-alias/
 ├── backends/
 │   ├── backend/
 │   └── backend2/
