@@ -25,7 +25,7 @@ Compruebe la versión:
 java --version
 ```
 
-![Versión de OpenJDK 21 instalada en Ubuntu](imagenes/25-09-2026/java-version-openjdk-21.webp)
+![Versión de OpenJDK 21 instalada en Ubuntu](imagenes/java-version-openjdk-21.webp)
 
 ---
 
@@ -79,7 +79,7 @@ sudo lsof -i -P -n | grep java
 | `-n` | Muestra direcciones numéricas sin resolver nombres de host |
 | `grep java` | Conserva las líneas que contienen `java` |
 
-![Proceso Java de Jenkins escuchando en el puerto 8080](imagenes/25-09-2026/jenkins-puerto-8080.webp)
+![Proceso Java de Jenkins escuchando en el puerto 8080](imagenes/jenkins-puerto-8080.webp)
 
 La salida muestra `TCP *:8080 (LISTEN)`: el proceso está escuchando en el puerto `8080`.
 
@@ -95,9 +95,9 @@ En la consola de AWS:
 4. Agregue una regla **TCP personalizado**, con puerto `8080`.
 5. Configure el origen que tendrá acceso y guarde los cambios.
 
-![Acceso a las reglas de entrada del grupo de seguridad](imagenes/25-09-2026/ec2-editar-grupo-seguridad.webp)
+![Acceso a las reglas de entrada del grupo de seguridad](imagenes/ec2-editar-grupo-seguridad.webp)
 
-![Reglas para SSH en 22 y Jenkins en 8080](imagenes/25-09-2026/ec2-reglas-ssh-jenkins.webp)
+![Reglas para SSH en 22 y Jenkins en 8080](imagenes/ec2-reglas-ssh-jenkins.webp)
 
 La captura utiliza `0.0.0.0/0` como origen. Ese valor permite conexiones desde cualquier IPv4. La regla de SSH en `22` se conserva para administrar el servidor.
 
@@ -115,7 +115,7 @@ Sustituya `IP_PUBLICA_EC2` por la IPv4 de su instancia. En la práctica se acced
 
 La primera pantalla solicita la contraseña inicial del administrador:
 
-![Pantalla inicial para desbloquear Jenkins](imagenes/25-09-2026/jenkins-desbloqueo.webp)
+![Pantalla inicial para desbloquear Jenkins](imagenes/jenkins-desbloqueo.webp)
 
 En la sesión SSH de EC2, consulte la contraseña:
 
@@ -140,7 +140,7 @@ El `cd certs/` corresponde a una terminal de CloudShell situada en `/home/clouds
 
 Seleccione **Install suggested plugins**:
 
-![Selección de los plugins sugeridos de Jenkins](imagenes/25-09-2026/jenkins-plugins-sugeridos.webp)
+![Selección de los plugins sugeridos de Jenkins](imagenes/jenkins-plugins-sugeridos.webp)
 
 Espere a que finalice la instalación. Los plugins agregan funciones a Jenkins; esta opción instala el conjunto sugerido por el asistente.
 
@@ -157,7 +157,7 @@ Complete el formulario **Create First Admin User** con:
 
 Pulse **Save and Continue**.
 
-![Formulario para crear el primer usuario administrador](imagenes/25-09-2026/jenkins-usuario-administrador.webp)
+![Formulario para crear el primer usuario administrador](imagenes/jenkins-usuario-administrador.webp)
 
 La contraseña elegida para esta cuenta se utilizará en los siguientes inicios de sesión. La contraseña inicial del paso anterior sirve para desbloquear el asistente.
 
@@ -171,11 +171,11 @@ Revise que **Jenkins URL** corresponda a la dirección pública con la que está
 http://IP_PUBLICA_EC2:8080/
 ```
 
-![Configuración de la URL pública de Jenkins](imagenes/25-09-2026/jenkins-url-instancia.webp)
+![Configuración de la URL pública de Jenkins](imagenes/jenkins-url-instancia.webp)
 
 Guarde la configuración. Cuando aparezca **Jenkins is ready!**, pulse **Start using Jenkins**.
 
-![Configuración inicial de Jenkins completada](imagenes/25-09-2026/jenkins-configuracion-completada.webp)
+![Configuración inicial de Jenkins completada](imagenes/jenkins-configuracion-completada.webp)
 
 ---
 
@@ -188,7 +188,7 @@ Dentro de Jenkins:
 3. Busque `GitHub Integration`.
 4. Marque el plugin y pulse **Install**.
 
-![Selección del plugin GitHub Integration](imagenes/25-09-2026/jenkins-plugin-github-integration.webp)
+![Selección del plugin GitHub Integration](imagenes/jenkins-plugin-github-integration.webp)
 
 Este paso agrega el plugin. La conexión a un repositorio, las credenciales y la creación de un trabajo de Jenkins corresponden a una configuración posterior.
 
@@ -196,4 +196,4 @@ Este paso agrega el plugin. La conexión a un repositorio, las credenciales y la
 
 Jenkins queda instalado como servicio en Ubuntu, accesible desde el puerto `8080`, con el asistente inicial completado y la selección del plugin de integración con GitHub.
 
-**Siguiente:** [04 — Desplegar sitios web con Docker y Nginx](despliegue-de-sitios-web-con-docker-y-nginx/04%20-%20Desplegar%20sitios%20web%20con%20Docker%20y%20Nginx.md).
+**Siguiente:** [04 — Desplegar sitios web con Docker y Nginx](../2.%20despliegue-de-sitios-web-con-docker-y-nginx/04%20-%20Desplegar%20sitios%20web%20con%20Docker%20y%20Nginx.md).

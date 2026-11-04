@@ -31,7 +31,7 @@ git --version
 - `-y` acepta automáticamente las confirmaciones de instalación.
 - `git --version` comprueba que el comando esté disponible y muestra su versión.
 
-![Instalación de Git y consulta de su versión](imagenes/25-09-2026/git-instalacion-y-version.webp)
+![Instalación de Git y consulta de su versión](imagenes/git-instalacion-y-version.webp)
 
 La captura muestra que Git ya estaba instalado y que se pudo consultar su versión. Git permitirá trabajar con repositorios; en este paso todavía no se clona ningún proyecto.
 

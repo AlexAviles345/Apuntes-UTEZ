@@ -2,7 +2,7 @@
 
 Esta práctica publica dos sitios web en EC2: una biografía y una calculadora. Cada proyecto tiene su propio Dockerfile, utiliza `nginx:alpine` y sirve sus archivos desde el puerto `80` del contenedor.
 
-**Anterior:** [03 — Instalar y configurar Jenkins](../03%20-%20Instalar%20y%20configurar%20Jenkins.md).
+**Anterior:** [03 — Instalar y configurar Jenkins](../1.%20ec2-docker-y-nginx-inicial/03%20-%20Instalar%20y%20configurar%20Jenkins.md).
 
 Debe tener Docker instalado y estar conectado a EC2 mediante SSH.
 
