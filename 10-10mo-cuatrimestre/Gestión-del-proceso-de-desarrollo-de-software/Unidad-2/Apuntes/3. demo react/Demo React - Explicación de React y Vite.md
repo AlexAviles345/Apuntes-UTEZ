@@ -381,6 +381,20 @@ Vite transforma JSX, procesa las importaciones y agrupa los recursos que el nave
 
 ## 12. Ejecutar en Desarrollo
 
+Para ejecutar el proyecto localmente se debe tener **Node.js y npm instalados previamente**. Puede comprobarlo con:
+
+```bash
+node --version
+npm --version
+```
+
+Si no están instalados en Ubuntu o Debian, utilice:
+
+```bash
+sudo apt update
+sudo apt install -y nodejs npm
+```
+
 Desde `front/`:
 
 ```bash

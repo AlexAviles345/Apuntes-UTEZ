@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Ball - Personajes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>Dragon Ball</h1>
+        <p>Explora los guerreros del universo</p>
+    </header>
+
+    <main class="container">
+        <h2>Catálogo de personajes</h2>
+
+        <p id="mensaje" role="status">
+            Cargando personajes...
+        </p>
+
+        <section id="personajes" class="personajes">
+            <!-- Los personajes se cargan desde JavaScript -->
+        </section>
+
+        <!-- Paginación -->
+        <div class="paginacion">
+            <button id="anterior" type="button" disabled>
+                Anterior
+            </button>
+
+            <span id="pagina">Página 1</span>
+
+            <button id="siguiente" type="button">
+                Siguiente
+            </button>
+        </div>
+    </main>
+
+    <!-- Modal de detalles -->
+    <div id="modal" class="modal" role="dialog"
+         aria-modal="true" aria-labelledby="modal-titulo" hidden>
+
+        <div class="modal-contenido">
+            <button id="cerrar-modal" class="cerrar"
+                    type="button" aria-label="Cerrar modal">
+                &times;
+            </button>
+
+            <p id="modal-mensaje" role="status">
+                Cargando personaje...
+            </p>
+
+            <div id="detalle-personaje"></div>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <p>Dragon Ball &copy; 2026</p>
+    </footer>
+
+    <script src="app.js" defer></script>
+
+</body>
+</html>
