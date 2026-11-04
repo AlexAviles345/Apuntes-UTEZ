@@ -94,7 +94,7 @@ La IP `18.235.1.133` aparece en el documento y en `main.js` como dirección util
 ### Organización dentro del repositorio
 
 ```text
-gestion-personas/
+2. gestion-personas/
 ├── pmng/
 │   ├── service/                 # API Spring Boot y Dockerfile
 │   └── client/                  # HTML, JavaScript y Dockerfile de Nginx
