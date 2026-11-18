@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Alexandro Jesus Ceron Aviles">
+  <title>PWA Cámara Instalable - Alexandro Jesus Ceron Aviles</title>
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0d6efd">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <h1>PWA con Cámara</h1>
+    <p class="autor">Alumno: <strong>Alexandro Jesus Ceron Aviles</strong></p>
+  </header>
+
+  <main>
+    <button id="btn-instalar" hidden>📲 Instalar App</button>
+
+    <div id="instrucciones-ios" class="tarjeta" hidden>
+      Para instalar en iPhone, pulsa el icono <strong>Compartir</strong>
+      y selecciona <strong>'Agregar a inicio'</strong>.
+    </div>
+
+    <button id="btn-preparar-camara">Solicitar Acceso a Cámara</button>
+
+    <div id="aviso-permiso" class="tarjeta" hidden>
+      <p>Esta aplicación requiere acceso a tu cámara únicamente para mostrar
+      una vista previa local en pantalla. Ninguna imagen se envía a
+      servidores externos.</p>
+      <button id="btn-confirmar-permiso">Aceptar y Encender Cámara</button>
+    </div>
+
+    <video id="visor-camara" autoplay playsinline muted></video>
+
+    <div class="controles">
+      <button id="btn-alternar-camara">🔄 Cambiar cámara</button>
+      <button id="btn-apagar-camara">⏹ Apagar cámara</button>
+    </div>
+
+    <p id="estado" role="status">Cámara apagada.</p>
+  </main>
+
+  <footer class="pie">
+    <small>Práctica PWA &middot; Alexandro Jesus Ceron Aviles</small>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
