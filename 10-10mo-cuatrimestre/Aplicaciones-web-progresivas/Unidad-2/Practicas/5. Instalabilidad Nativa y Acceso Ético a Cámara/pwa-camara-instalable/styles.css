@@ -1,0 +1,13 @@
+[hidden] { display: none !important; }
+body { font-family: system-ui, sans-serif; margin: 0; background: #f5f7fa; }
+.encabezado { background: #0d6efd; color: #fff; text-align: center; padding: 16px; }
+.encabezado h1 { margin: 0 0 6px; font-size: 1.5rem; }
+.autor { margin: 0; font-size: 1rem; }
+main { max-width: 480px; margin: 0 auto; padding: 16px; text-align: center; }
+button { padding: 12px 18px; margin: 6px; border: 0; border-radius: 8px;
+         background: #0d6efd; color: #fff; font-size: 1rem; }
+.tarjeta { background: #fff; border: 1px solid #ccd; border-radius: 10px;
+           padding: 14px; margin: 12px 0; text-align: left; }
+video { width: 100%; max-height: 60vh; background: #000; border-radius: 10px; margin-top: 12px; }
+.controles { display: flex; justify-content: center; flex-wrap: wrap; }
+.pie { text-align: center; padding: 16px; color: #555; }
