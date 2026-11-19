@@ -1,0 +1,31 @@
+services:
+  pmng-back:
+    image: backend:v1.0
+    build:
+      context: ./service
+    container_name: pmng-servicios
+    environment:
+      DC_SERVICE_PORT: ${ENV_SERVICE_PORT}
+      DC_DB_HOST: ${ENV_DB_HOST}
+      DC_DB_PORT: ${ENV_DB_PORT}
+      DC_DB_NAME: ${ENV_DB_NAME}
+      DC_DB_USER: ${ENV_DB_USER}
+      DC_DB_PASS: ${ENV_DB_PASS}
+    ports:
+      - "8089:${ENV_SERVICE_PORT}"
+    networks:
+      - pmng-net
+
+  pmng-front:
+    image: frontend:v1.0
+    build:
+      context: ./client
+    container_name: pmng-cliente
+    ports:
+      - "5173:80"
+    networks:
+      - pmng-net
+
+networks:
+  pmng-net:
+    external: true
