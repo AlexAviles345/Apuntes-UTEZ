@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b5fff">
+  <title>Geo PWA Modular</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="apple-touch-icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header>
+    <h1>📍 Geolocalización Consciente</h1>
+    <p>Práctica 6.3 · PWA · JavaScript Vanilla</p>
+  </header>
+
+  <main>
+    <!-- Acción principal -->
+    <section class="card">
+      <h2>Reporte técnico</h2>
+      <p>Pulsa el botón para adjuntar tu ubicación al reporte.</p>
+      <button id="btn-adjuntar" class="btn btn-primary" type="button">
+        Adjuntar mi ubicación
+      </button>
+      <p id="estado" class="estado" role="status" aria-live="polite"></p>
+    </section>
+
+    <!-- Tarjeta de pre-permiso -->
+    <section id="card-prepermiso" class="card card-info" hidden>
+      <h2>¿Por qué pedimos tu ubicación?</h2>
+      <p>
+        Necesitamos tu ubicación aproximada para adjuntar las coordenadas al
+        reporte técnico y calcular la sucursal más cercana. Solo se usa cuando
+        tú lo confirmas y no se comparte con nadie.
+      </p>
+      <div class="acciones">
+        <button id="btn-confirmar" class="btn btn-primary" type="button">
+          Compartir mi ubicación
+        </button>
+        <button id="btn-cancelar" class="btn btn-secondary" type="button">
+          Ahora no
+        </button>
+      </div>
+    </section>
+
+    <!-- Permiso denegado -->
+    <section id="card-denegado" class="card card-warning" hidden>
+      <h2>Permiso bloqueado</h2>
+      <p>
+        El navegador tiene bloqueada la ubicación para este sitio. Para
+        reactivarla: toca el ícono de candado/ajustes junto a la URL →
+        <strong>Permisos</strong> → <strong>Ubicación</strong> → <strong>Permitir</strong>,
+        y recarga la página. En iPhone: Ajustes → Privacidad → Localización →
+        Safari (o el sitio web). Mientras tanto, puedes elegir tu zona manualmente.
+      </p>
+    </section>
+
+    <!-- Plan B: selector manual -->
+    <section id="card-manual" class="card" hidden>
+      <h2>Plan B: indica tu zona</h2>
+      <label for="select-zona">Municipio / zona</label>
+      <select id="select-zona">
+        <option value="">-- Selecciona --</option>
+        <option>Cuernavaca</option>
+        <option>Emiliano Zapata</option>
+        <option>Jiutepec</option>
+        <option>Temixco</option>
+        <option>Xochitepec</option>
+        <option>Cuautla</option>
+        <option>Yautepec</option>
+      </select>
+      <label for="input-direccion">Dirección o referencia (opcional)</label>
+      <input id="input-direccion" type="text" placeholder="Calle, colonia, referencia...">
+      <button id="btn-guardar-zona" class="btn btn-primary" type="button">
+        Guardar zona manual
+      </button>
+      <p id="resultado-manual" class="estado"></p>
+    </section>
+
+    <!-- Resultado de ubicación -->
+    <section id="card-resultado" class="card card-ok" hidden>
+      <h2>Ubicación adjuntada</h2>
+      <p id="badge-precision" class="badge"></p>
+      <dl>
+        <dt>Latitud</dt><dd id="res-lat">-</dd>
+        <dt>Longitud</dt><dd id="res-lon">-</dd>
+        <dt>Precisión (accuracy)</dt><dd id="res-prec">-</dd>
+        <dt>Fecha de lectura</dt><dd id="res-fecha">-</dd>
+      </dl>
+      <a id="enlace-mapa" href="#" target="_blank" rel="noopener">Ver en OpenStreetMap</a>
+    </section>
+  </main>
+
+  <!-- ORDEN IMPORTANTE: primero el helper, luego app.js -->
+  <script src="./geo-helper.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
