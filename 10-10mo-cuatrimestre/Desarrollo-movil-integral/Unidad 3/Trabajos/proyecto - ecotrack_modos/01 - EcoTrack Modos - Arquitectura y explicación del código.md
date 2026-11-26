@@ -1,6 +1,15 @@
 # 01 — EcoTrack Modos — Arquitectura y explicación del código
 
-La práctica muestra dos configuraciones independientes. El **modo de compilación** lo elige Flutter y afecta a la ejecución. El **ambiente** lo elige la aplicación a partir de `AMBIENTE` y determina los valores que muestra y algunas reglas del logger. Se pueden combinar, por ejemplo, Debug con el ambiente Producción.
+Flutter permite elegir dos configuraciones por separado. El **modo de compilación** determina cómo se construye la app. El **ambiente** determina qué configuración usa EcoTrack al ejecutarse. Por ejemplo, puedes compilar en Debug y seleccionar el ambiente Producción.
+
+## Comparación rápida
+
+| | Modo de compilación | Ambiente |
+|---|---|---|
+| **¿Qué define?** | Cómo se compila y empaqueta la app, qué optimizaciones aplica Flutter y qué herramientas de depuración están disponibles. | Qué valores usa la app, como la URL base de la API, el tema y las opciones de logs. |
+| **¿Qué valores tiene?** | Debug, Profile y Release. | Desarrollo (`dev`), pruebas (`qa`) y producción (`prod`) en esta práctica. |
+| **¿Cómo se elige?** | `flutter run` usa Debug por defecto. Se puede indicar `--debug`, `--profile` o `--release`. | Se pasa `--dart-define=AMBIENTE=valor` al ejecutar o compilar. |
+| **¿Quién lo define?** | Flutter define los modos disponibles y el desarrollador elige uno para la ejecución o compilación. | El desarrollador define los ambientes, sus nombres y sus valores en el código de la app. |
 
 ## 1. Cómo se organiza el código
 
@@ -13,17 +22,29 @@ La práctica muestra dos configuraciones independientes. El **modo de compilaci�
 
 ## 2. Cómo se lee el modo y el ambiente
 
+### Modo de compilación
+
 `modoActual()` consulta tres constantes de Flutter. Devuelve un `ModoInfo` con la etiqueta y la descripción de la tarjeta **Modo de ejecución**. El modo también se puede comprobar con los tres chips de la pantalla.
 
-| Modo | Constante verdadera | Uso |
-|---|---|---|
-| Debug | `kDebugMode` | Desarrollo, hot reload y diagnósticos detallados. Es el modo predeterminado de `flutter run`. |
-| Profile | `kProfileMode` | Medición de desempeño con instrumentación. Las mediciones se realizan en un dispositivo físico. |
-| Release | `kReleaseMode` | Compilación optimizada de distribución. |
+| Modo | Comando | Constante verdadera | Uso |
+|---|---|---|---|
+| Debug | `flutter run` | `kDebugMode` | Desarrollo diario con hot reload y herramientas de depuración. Se prioriza la iteración rápida. |
+| Profile | `flutter run --profile` | `kProfileMode` | Medir tiempos de renderizado y uso de memoria con un comportamiento cercano a Release. Las mediciones se realizan en un dispositivo físico. |
+| Release | `flutter run --release` | `kReleaseMode` | Ejecutar una versión optimizada. Para distribuirla se genera y firma un paquete con la configuración correspondiente. |
 
 [Modos de compilación de Flutter](https://docs.flutter.dev/testing/build-modes).
 
-`Ambiente.actual` lee `String.fromEnvironment('AMBIENTE', defaultValue: 'dev')`. El valor se compara en minúsculas. Reconoce `qa`, `prod` y `production`. Si falta el argumento o el valor es desconocido, usa `dev`.
+### Ambiente
+
+`--dart-define` pasa valores a la configuración de compilación. En [ambiente.dart](ecotrack_modos/lib/ambiente.dart), `Ambiente.actual` lee la opción así.
+
+```dart
+const raw = String.fromEnvironment('AMBIENTE', defaultValue: 'dev');
+```
+
+El código compara el valor en minúsculas. `qa` selecciona el ambiente de pruebas y `prod` o `production` seleccionan producción. Si falta el argumento o el valor es desconocido, usa `dev`. En este proyecto el valor para pruebas es `qa`. Escribir `AMBIENTE=pruebas` activaría la configuración predeterminada `dev`.
+
+Para opciones que solo admiten `true` o `false`, Dart ofrece `const bool.fromEnvironment('OPCION', defaultValue: false)`. [Declaraciones de entorno en Dart](https://dart.dev/libraries/core/environment-declarations).
 
 | Ambiente | URL que muestra | Color configurado | Logs verbosos | Campo «Banner de depuración» |
 |---|---|---|---|---|
@@ -32,6 +53,22 @@ La práctica muestra dos configuraciones independientes. El **modo de compilaci�
 | PROD | `https://api.ecotrack.utez.edu.mx` | Índigo | No | No |
 
 La app usa esas URL para ilustrar cómo cambia una configuración. El experimento de consumo solo actualiza la pantalla y la consola. El campo **Banner de depuración** en la tarjeta muestra `ambiente.mostrarBanner`. La cinta diagonal **DEBUG** de Flutter se controla por separado: `MaterialApp` deja activa `debugShowCheckedModeBanner` y Flutter la dibuja en Debug. Por eso en Debug + PROD se puede leer «Banner de depuración: no» y seguir viendo la cinta.
+
+### Ejemplos de combinación
+
+```bash
+# Release con la configuración del ambiente de pruebas.
+flutter run --release --dart-define=AMBIENTE=qa
+
+# Debug con la configuración del ambiente de desarrollo.
+flutter run --dart-define=AMBIENTE=dev
+```
+
+El primer comando conserva las optimizaciones de Release y selecciona la configuración QA. La [tabla de pruebas](02%20-%20EcoTrack%20Modos%20-%20Gu%C3%ADa%20de%20ejecuci%C3%B3n%20y%20tabla%20de%20pruebas.md#tabla-de-pruebas) muestra otra combinación observada en la práctica, Debug + PROD.
+
+### Seguridad de la configuración
+
+Usa `--dart-define` para valores que se puedan distribuir, como el nombre del ambiente o una URL pública. Los valores que usa la app pueden quedar incorporados en el binario y recuperarse. Guarda las claves privadas, contraseñas de servicios y tokens de administración en el backend. [Seguridad del código compilado en Flutter](https://docs.flutter.dev/deployment/obfuscate).
 
 ## 3. Qué hace el panel
 
