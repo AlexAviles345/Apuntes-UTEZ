@@ -27,7 +27,7 @@ En [EcoTrack Estado](../../../Unidad%202/Apuntes/proyecto%20-%20ecotrack_estado/
 | Sin banderas | `MemoriaAuthRepository` | En memoria durante esa ejecución de la app. |
 | `SESION_GUARDADA=true` | `MemoriaAuthRepository` | En memoria. Arranca con una sesión de ejemplo ya seleccionada. |
 | `EMULADOR=true` | `FirebaseAuthRepository` | En el emulador de Authentication, en `demo-ecotrack`. |
-| `FIREBASE=true` | `FirebaseAuthRepository` | En el proyecto remoto que indican las opciones generadas de Firebase. |
+| `FIREBASE=true` | `FirebaseAuthRepository` | En el proyecto remoto que indica el `google-services.json` local de Android. |
 
 Si se proporcionan `EMULADOR` y `FIREBASE` juntos, el código selecciona el emulador primero. `SESION_GUARDADA` aplica solo a la rama en memoria.
 

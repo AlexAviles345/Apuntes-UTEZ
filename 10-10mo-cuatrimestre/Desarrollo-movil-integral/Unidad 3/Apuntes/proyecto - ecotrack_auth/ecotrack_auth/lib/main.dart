@@ -11,6 +11,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
@@ -19,7 +20,6 @@ import 'datos/firebase_auth_repository.dart';
 import 'datos/memoria_auth_repository.dart';
 import 'dominio/usuario.dart';
 import 'firebase_emulador.dart';
-import 'firebase_options.dart';
 
 const _usarFirebase = bool.fromEnvironment('FIREBASE');
 const _usarEmulador = bool.fromEnvironment('EMULADOR');
@@ -32,14 +32,21 @@ Future<void> main() async {
 
 Future<AuthRepository> _crearRepositorio() async {
   if (_usarEmulador) {
-    await Firebase.initializeApp(options: opcionesEmulador);
-    await FirebaseAuth.instance.useAuthEmulator(hostEmulador, 9099);
-    return FirebaseAuthRepository(FirebaseAuth.instance);
+    final app = await Firebase.initializeApp(
+      name: 'ecotrack-emulador',
+      options: opcionesEmulador,
+    );
+    final auth = FirebaseAuth.instanceFor(app: app);
+    await auth.useAuthEmulator(hostEmulador, 9099);
+    return FirebaseAuthRepository(auth);
   }
   if (_usarFirebase) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
+      throw UnsupportedError(
+        'El modo Firebase real está configurado para Android.',
+      );
+    }
+    await Firebase.initializeApp();
     return FirebaseAuthRepository(FirebaseAuth.instance);
   }
   return MemoriaAuthRepository(

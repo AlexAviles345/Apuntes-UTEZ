@@ -96,7 +96,7 @@ flutter devices
 flutter run --dart-define=FIREBASE=true
 ```
 
-Si Flutter muestra varios destinos, selecciona Android. `main.dart` inicializa Firebase con `DefaultFirebaseOptions.currentPlatform`. La copia actual tiene opciones generadas para Android. El modo real en Chrome requiere generar también las opciones de Web para ese proyecto. Las capturas muestran el alta del proyecto y de la app Android. Los pasos de acceso y registro se pueden comprobar con los escenarios de la sección 8.
+Si Flutter muestra varios destinos, selecciona Android. Coloca el `google-services.json` de tu aplicación en `android/app/`. Gradle lo procesa cuando está presente y `main.dart` inicializa Firebase con esa configuración de Android. Los archivos `android/app/google-services.json` y `lib/firebase_options.dart` generados para tu proyecto se conservan localmente mediante `.gitignore`. Para probar en Chrome, usa el emulador local de la sección 7. Los escenarios de acceso y registro están en la sección 8.
 
 ## 6. Ejecutar el modo simulado
 
